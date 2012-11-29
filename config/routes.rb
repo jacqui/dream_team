@@ -1,17 +1,19 @@
 DreamTeam::Application.routes.draw do
-  resources :unit_actions
+  scope ":project" do
+    root :to => 'picks#new'
+
+    resources :unit_actions
 
 
-  resources :picks
+    resources :picks
 
 
-  resources :readers
+    resources :readers
 
 
-  resources :players
+    resources :players
 
 
-  resources :teams
-
-
+    resources :teams
+  end
 end
