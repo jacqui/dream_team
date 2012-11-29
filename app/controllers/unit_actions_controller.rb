@@ -1,0 +1,2 @@
+class UnitActionsController < ApplicationController
+end
