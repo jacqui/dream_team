@@ -10,3 +10,4 @@ require 'espn_api'
 
 espn = EspnApi.new('football')
 espn.load_teams
+espn.load_players

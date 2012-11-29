@@ -58,7 +58,29 @@ class EspnApi
   end
 
   def players(team)
+
   end
 
+  def players_data
+    return @players_data if @players_data
+
+    players_json = RestClient.get api_url("athletes")
+    @players_data = Oj.load(players_json)['sports'].first['leagues'].first['athletes']
+    @players_data
+  end
+
+  def load_players
+    giants = Team.where(:name => "Giants").first
+    seahawks = Team.where(:name => "Seahawks").first
+
+    # grab some random athletes since the espn api don't let us grab rosters
+    players_data[0, players_data.size / 2].each do |player|
+      Player.where(:team_id => giants.id, :first_name => player['firstName'], :last_name => player['lastName']).first_or_create
+    end
+
+    players_data[(players_data.size / 2) + 1, players_data.size].each do |player|
+      Player.where(:team_id => seahawks.id, :first_name => player['firstName'], :last_name => player['lastName']).first_or_create
+    end
+  end
 
 end
