@@ -8,6 +8,7 @@ end
 gem 'jquery-rails'
 gem "unicorn", ">= 4.3.1", :group => :production
 gem "mysql2", ">= 0.3.11"
+gem "rest-client", "~> 1.6.7", :require => "rest_client"
 gem "rspec-rails", ">= 2.11.4", :group => [:development, :test]
 gem "database_cleaner", ">= 0.9.1", :group => :test
 gem "email_spec", ">= 1.4.0", :group => :test
