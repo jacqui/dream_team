@@ -1,3 +1,25 @@
 // Place all the styles related to the picks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.candidates {
+  margin: 0;
+}
+.candidates .player {
+  list-style: none;
+  margin: 0 10px 10px 0;
+  float: left;
+  width: 180px;
+  height: 40px;
+  background: #ddd;
+  padding: 0 8px;
+  border-radius: 5px;
+}
+.candidates .player:hover {
+  background: #d4d4d4;
+  cursor: pointer;
+}
+.candidates .player.selected {
+  background: #51A351;
+  color: white;
+}
