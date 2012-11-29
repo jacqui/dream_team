@@ -11,6 +11,56 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 0) do
+ActiveRecord::Schema.define(:version => 20121129190600) do
+
+  create_table "picks", :force => true do |t|
+    t.integer  "reader_id"
+    t.integer  "pick_id"
+    t.string   "pick_type"
+    t.string   "date_window"
+    t.datetime "created_at",  :null => false
+    t.datetime "updated_at",  :null => false
+  end
+
+  create_table "players", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "position"
+    t.text     "bio"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
+  create_table "readers", :force => true do |t|
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "nyt_id"
+    t.string   "nyt_username"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "teams", :force => true do |t|
+    t.string   "name"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.string   "location"
+    t.string   "color"
+    t.string   "abbreviation"
+    t.string   "web_link"
+    t.string   "api_link"
+    t.string   "news_api_link"
+    t.string   "mobile_link"
+    t.string   "notes_api_link"
+  end
+
+  create_table "unit_actions", :force => true do |t|
+    t.integer  "points"
+    t.string   "qualifying_metric_type"
+    t.integer  "qualifying_metric_amount"
+    t.string   "qualifying_position"
+    t.datetime "created_at",               :null => false
+    t.datetime "updated_at",               :null => false
+  end
 
 end
