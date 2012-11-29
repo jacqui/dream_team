@@ -49,6 +49,7 @@ class EspnApi
     teams_data.each do |team_data|
       team = Team.where(:name => team_data['name'], :abbreviation => team_data['abbreviation'], :location => team_data['location']).first_or_create
       team.update_attributes(:color => team_data['color'],
+                             :espn_id => team_data['id'],
                              :web_link => team_data['links']['web']['teams']['href'],
                              :api_link => team_data['links']['api']['teams']['href'],
                              :news_api_link => team_data['links']['api']['news']['href'],
@@ -70,17 +71,24 @@ class EspnApi
   end
 
   def load_players
+    Player.destroy_all!
+
     giants = Team.where(:name => "Giants").first
     seahawks = Team.where(:name => "Seahawks").first
 
-    # grab some random athletes since the espn api don't let us grab rosters
-    players_data[0, players_data.size / 2].each do |player|
-      Player.where(:team_id => giants.id, :first_name => player['firstName'], :last_name => player['lastName']).first_or_create
-    end
+    positions = %w(QB RB WR)
 
-    players_data[(players_data.size / 2) + 1, players_data.size].each do |player|
-      Player.where(:team_id => seahawks.id, :first_name => player['firstName'], :last_name => player['lastName']).first_or_create
+    # grab some random athletes since the espn api don't let us grab rosters
+    players_data.each do |player|
+      Player.where(:team_id => [giants, seahawks].choice.id,
+                   :first_name => player['firstName'],
+                   :last_name => player['lastName'],
+                   :full_name => player['fullName'],
+                   :short_name => player['shortName'],
+                   :display_name => player['displayName'],
+                   :espn_id => player['id'],
+                   :position => positions.choice
+                  ).first_or_create
     end
   end
-
 end
