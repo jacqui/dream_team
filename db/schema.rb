@@ -11,15 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129190600) do
+ActiveRecord::Schema.define(:version => 20121129192818) do
+
+  create_table "pick_windows", :force => true do |t|
+    t.datetime "window_start"
+    t.datetime "window_end"
+    t.integer  "project_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "picks", :force => true do |t|
     t.integer  "reader_id"
     t.integer  "pick_id"
     t.string   "pick_type"
-    t.string   "date_window"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
+    t.integer  "project_id"
+    t.integer  "pick_window_id"
   end
 
   create_table "players", :force => true do |t|
@@ -27,6 +36,14 @@ ActiveRecord::Schema.define(:version => 20121129190600) do
     t.string   "last_name"
     t.string   "position"
     t.text     "bio"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "team_id"
+  end
+
+  create_table "projects", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
     t.datetime "created_at", :null => false
     t.datetime "updated_at", :null => false
   end
