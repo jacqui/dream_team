@@ -11,16 +11,24 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129190836) do
+ActiveRecord::Schema.define(:version => 20121129202418) do
+
+  create_table "pick_windows", :force => true do |t|
+    t.datetime "window_start"
+    t.datetime "window_end"
+    t.integer  "project_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "picks", :force => true do |t|
     t.integer  "reader_id"
     t.integer  "pick_id"
     t.string   "pick_type"
-    t.string   "date_window"
-    t.datetime "created_at",  :null => false
-    t.datetime "updated_at",  :null => false
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
     t.integer  "project_id"
+    t.integer  "pick_window_id"
   end
 
   create_table "players", :force => true do |t|
@@ -28,9 +36,13 @@ ActiveRecord::Schema.define(:version => 20121129190836) do
     t.string   "last_name"
     t.string   "position"
     t.text     "bio"
-    t.datetime "created_at", :null => false
-    t.datetime "updated_at", :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.integer  "team_id"
+    t.string   "full_name"
+    t.string   "display_name"
+    t.string   "short_name"
+    t.string   "espn_id"
   end
 
   create_table "projects", :force => true do |t|
@@ -61,6 +73,7 @@ ActiveRecord::Schema.define(:version => 20121129190836) do
     t.string   "news_api_link"
     t.string   "mobile_link"
     t.string   "notes_api_link"
+    t.string   "espn_id"
   end
 
   create_table "unit_actions", :force => true do |t|
