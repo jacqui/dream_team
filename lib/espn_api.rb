@@ -46,6 +46,7 @@ class EspnApi
   end
 
   def load_teams
+    Team.destroy_all
     teams_data.each do |team_data|
       team = Team.where(:name => team_data['name'], :abbreviation => team_data['abbreviation'], :location => team_data['location']).first_or_create
       team.update_attributes(:color => team_data['color'],
@@ -71,7 +72,7 @@ class EspnApi
   end
 
   def load_players
-    Player.destroy_all!
+    Player.destroy_all
 
     giants = Team.where(:name => "Giants").first
     seahawks = Team.where(:name => "Seahawks").first
@@ -80,14 +81,14 @@ class EspnApi
 
     # grab some random athletes since the espn api don't let us grab rosters
     players_data.each do |player|
-      Player.where(:team_id => [giants, seahawks].choice.id,
+      Player.where(:team_id => [giants, seahawks].sample.id,
                    :first_name => player['firstName'],
                    :last_name => player['lastName'],
                    :full_name => player['fullName'],
                    :short_name => player['shortName'],
                    :display_name => player['displayName'],
                    :espn_id => player['id'],
-                   :position => positions.choice
+                   :position => positions.sample
                   ).first_or_create
     end
   end
