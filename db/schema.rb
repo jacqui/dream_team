@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121129202418) do
+ActiveRecord::Schema.define(:version => 20121130203859) do
 
   create_table "pick_windows", :force => true do |t|
     t.datetime "window_start"
@@ -53,13 +53,14 @@ ActiveRecord::Schema.define(:version => 20121129202418) do
   end
 
   create_table "readers", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
-    t.string   "nyt_id"
-    t.string   "nyt_username"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+    t.integer  "nytimes_id"
+    t.string   "name"
+    t.string   "username"
   end
+
+  add_index "readers", ["nytimes_id"], :name => "index_readers_on_nytimes_id"
 
   create_table "teams", :force => true do |t|
     t.string   "name"
