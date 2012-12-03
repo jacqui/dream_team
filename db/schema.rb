@@ -13,6 +13,15 @@
 
 ActiveRecord::Schema.define(:version => 20121130203859) do
 
+  create_table "pick_buckets", :force => true do |t|
+    t.string   "pick_type",                        :null => false
+    t.integer  "pick_window_id",                   :null => false
+    t.integer  "count",                            :null => false
+    t.boolean  "required",       :default => true, :null => false
+    t.datetime "created_at",                       :null => false
+    t.datetime "updated_at",                       :null => false
+  end
+
   create_table "pick_windows", :force => true do |t|
     t.datetime "window_start"
     t.datetime "window_end"

@@ -9,8 +9,47 @@ class PicksController < ApplicationController
     # @candidates = @candidates.in_window(@pick_window)
 
     # TODO: Filter out players this reader has already picked.
+    @pick_buckets = @pick_window.pick_buckets
 
-    @pick = Pick.new
+    # Find existing picks by this user. Then, loop over all possible pick
+    # profiles for this pick window, inserting existing picks where possible,
+    # otherwise creating blank ones.
+
+    existing_picks = Pick.where(
+      :reader_id  => @reader.id,
+      :pick_window_id => @pick_window.id
+    )
+
+    @picks = @pick_buckets.map do |bucket|
+      usable_picks = existing_picks.select { |pick| pick.pick_type == bucket.pick_type }
+      new_picks = (bucket.count - usable_picks.size).times.map do
+        Pick.new(
+          :project_id => @project.id,
+          :reader_id => @reader.id,
+          :pick_window_id => @pick_window.id
+        )
+      end
+
+      [usable_picks, new_picks].compact.flatten
+    end
+    @picks.flatten!
+  end
+
+  def update
+    params[:buckets].each do |idx, b|
+      bucket = PickBucket.find(b["id"])
+      b["player_ids"].each do |player_id|
+        Pick.create(
+          :pick_id => player_id,
+          :pick_type => b["pick_type"],
+          :project_id => @project.id,
+          :pick_window_id => @pick_window.id,
+          :reader_id => @reader.id
+        )
+      end
+    end
+
+    render :json => {}
   end
 
   private

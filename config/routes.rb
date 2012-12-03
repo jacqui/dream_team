@@ -4,6 +4,7 @@ DreamTeam::Application.routes.draw do
 
     resources :unit_actions
     resources :picks
+    post "picks/update", :to => "picks#update", :as => "update_picks"
     resources :readers
     resources :players
     resources :teams

@@ -23,3 +23,44 @@
   background: #51A351;
   color: white;
 }
+
+.candidates .player.nytint-hidden {
+  display: none;
+}
+
+.round-meta {
+  width: 25%;
+  float: left;
+}
+
+.buckets {
+  margin: 0;
+  width: 75%;
+  float: right;
+}
+.buckets .bucket {
+  list-style: none;
+  margin: 0 0px 10px 10px;
+  float: right;
+  width: 120px;
+  height: 120px;
+  background: #ccc;
+  padding: 0 8px;
+  border-radius: 5px;
+}
+.buckets .bucket:hover {
+  background: #d4d4d4;
+  cursor: pointer;
+}
+.buckets .bucket.selected,
+.buckets .bucket.selected:hover {
+  background: #51A351;
+}
+
+.bucket-picks {
+  margin: 0;
+}
+.bucket-picks li {
+  list-style: none;
+  font-weight: bold;
+}

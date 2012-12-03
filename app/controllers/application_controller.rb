@@ -6,22 +6,16 @@ class ApplicationController < ActionController::Base
   def set_project
     @project = Project.find_by_slug(params[:project])
     if @project.blank?
-      @project = Project.first || Project.create!(
-        :name => "Super Bowl 2013",
-        :slug => "super-bowl-2013"
-      )
+      @project = Project.first
     end
-    self.default_url_options[:project] = @project
+    self.default_url_options[:project] = @project.slug
   end
 
   # Hard code for now.
   # TODO: Make this transparent, possibly use code from chad / extract into
   # gem.
   def set_reader
-    @reader = Reader.first || Reader.create!(
-      :first_name => "Michael",
-      :last_name => "Strickland"
-    )
+    @reader = Reader.first
   end
 
 end

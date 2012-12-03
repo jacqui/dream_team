@@ -1,6 +1,7 @@
 class Project < ActiveRecord::Base
   has_many :pick_windows
   attr_accessible :name, :slug
+  validates_uniqueness_of :slug
 
   # If today is within a pick window, return it.
   # Otherwise, return nil.

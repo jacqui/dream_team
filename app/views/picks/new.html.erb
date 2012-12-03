@@ -1,28 +1,28 @@
-<div class="">
-  <% if @pick_window.present? %>
-    <h4>Round <%= @pick_window.index %> / <%= @pick_window.project.pick_windows.count %></h4>
-    <%= @pick_window.window_start.strftime("%m/%d/%Y") %> - <%= @pick_window.window_end.strftime("%m/%d/%Y") %>
-  <% else %>
-    You cannot make a selection at this time.
-  <% end %>
+<div class="row-fluid">
+  <div class="round-meta">
+    <% if @pick_window.present? %>
+      <h4>Round <%= @pick_window.index %> / <%= @pick_window.project.pick_windows.count %></h4>
+      <%= @pick_window.window_start.strftime("%m/%d/%Y") %> - <%= @pick_window.window_end.strftime("%m/%d/%Y") %>
+    <% else %>
+      You cannot make a selection at this time.
+    <% end %>
+    <br />
+    <br />
+    <button class="submit-buckets btn">Save</button>
+  </div>
+  <ul class="buckets" id="buckets"></ul>
 </div>
 
-<br />
 <h4>Make your picks!</h4>
 
-<%= form_for @pick, :url => new_pick_path, :id => "new-pick" do |f| %>
-  <%= f.hidden_field :pick_id, :class => "pick_id" %>
-  <%= f.hidden_field :pick_type, :class => "pick_type"%>
+<ul class="candidates" id="pick-form"></ul>
 
-  <%= f.submit "Save", :class => "btn btn-success" %>
-<% end %>
-
-<div class="pick-form">
-  <ul class="candidates">
-  <% @candidates.each do |player| %>
-    <li class="player" data-player-id="<%= player.id %>">
-      <h5><%= player.full_name %></h5>
-    </li>
-  <% end %>
-  <ul>
-</div>
+<script type="text/javascript">
+  var picker = new Picker({
+    players: <%= raw @candidates.to_json %>,
+    buckets: <%= raw @pick_buckets.map(&:to_json).to_json %>,
+    endpoints: {
+      update: "<%= update_picks_path %>"
+    }
+  });
+</script>

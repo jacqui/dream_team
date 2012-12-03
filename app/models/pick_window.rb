@@ -1,7 +1,10 @@
 class PickWindow < ActiveRecord::Base
   belongs_to :project
+  has_many :pick_buckets
 
   attr_accessible :project_id, :window_end, :window_start
+
+  validates_uniqueness_of :project_id, :scope => [:window_end, :window_start]
 
   default_scope :order => "window_start ASC"
 
