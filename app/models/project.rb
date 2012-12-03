@@ -7,4 +7,8 @@ class Project < ActiveRecord::Base
   def current_pick_window
     pick_windows.where("window_start < '#{DateTime.now}' AND window_end > '#{DateTime.now}'").first
   end
+
+  def to_param
+    slug
+  end
 end

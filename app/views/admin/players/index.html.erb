@@ -1,0 +1,31 @@
+<div class="page-header">
+  <%= link_to new_admin_player_path, :class => 'btn btn-primary' do %>
+    <i class="icon-plus icon-white"></i>
+    New player
+  <% end %>
+  <h1>players</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Team</th>
+      <th>Position</th>
+      <th>Source</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @players.each do |player| %>
+      <tr>
+        <td><%= link_to player.full_name, edit_admin_player_path(player) %></td>
+        <td><%= link_to player.team.name, edit_admin_team_path(player.team) %></td>
+        <td><%= player.position %></td>
+        <td><%= player.source %></td>
+        <td><%= link_to 'Destroy', [:admin, player], confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
