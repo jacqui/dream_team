@@ -1,0 +1,31 @@
+<div class="page-header">
+  <%= link_to admin_teams_path, :class => 'btn' do %>
+    <i class="icon-list-alt"></i>
+    Back
+  <% end %>
+  <%= link_to edit_admin_team_path(@team), :class => 'btn btn-primary' do %>
+    <i class="icon-pencil icon-white"></i>
+    Edit
+  <% end %>
+  <h1><%= @team.name_and_location %></h1>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Position</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @team.players.each do |player| %>
+      <tr>
+        <td><%= link_to player.full_name, edit_admin_player_path(player) %></td>
+        <td><%= player.position %></td>
+        <td><%= link_to 'x', [:admin, player], confirm: 'Are you sure?', method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

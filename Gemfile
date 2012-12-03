@@ -18,3 +18,6 @@ gem "bootstrap-sass", ">= 2.1.1.0"
 gem "quiet_assets", ">= 1.0.1", :group => :development
 gem "hub", ">= 1.10.2", :require => nil, :group => [:development]
 gem "ejs"
+gem "nokogiri", "~> 1.5.5"
+gem 'bootstrap-generators', '~> 2.1'
+gem 'simple_form'
