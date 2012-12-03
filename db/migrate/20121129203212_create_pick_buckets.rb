@@ -9,6 +9,6 @@ class CreatePickBuckets < ActiveRecord::Migration
       t.timestamps
     end
 
-    add_column :picks, :pick_bucket_id
+    add_column :picks, :pick_bucket_id, :integer
   end
 end

@@ -38,6 +38,7 @@ ActiveRecord::Schema.define(:version => 20121203054717) do
     t.datetime "updated_at",     :null => false
     t.integer  "project_id"
     t.integer  "pick_window_id"
+    t.integer  "pick_bucket_id"
   end
 
   create_table "players", :force => true do |t|
