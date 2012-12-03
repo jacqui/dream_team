@@ -1,8 +1,7 @@
 class Player < ActiveRecord::Base
-  attr_accessible :bio, :first_name, :last_name, :position
   belongs_to :team
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
+  attr_accessible :bio, :first_name, :last_name, :position, :team, :full_name, :source_id, :source
+
+  validates_presence_of :full_name
 end

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121130203859) do
+ActiveRecord::Schema.define(:version => 20121202234342) do
 
   create_table "pick_windows", :force => true do |t|
     t.datetime "window_start"
@@ -43,6 +43,8 @@ ActiveRecord::Schema.define(:version => 20121130203859) do
     t.string   "display_name"
     t.string   "short_name"
     t.string   "espn_id"
+    t.integer  "source_id"
+    t.string   "source"
   end
 
   create_table "projects", :force => true do |t|
