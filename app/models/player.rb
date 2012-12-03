@@ -12,4 +12,20 @@ class Player < ActiveRecord::Base
   before_save do
     self.slug = full_name.parameterize
   end
+
+  def badge_color
+    case position
+    when 'QB'
+      'badge-success'
+    when 'RB'
+      'badge-warning'
+    when 'WR'
+      'badge-important'
+    when 'TE'
+      'badge-info'
+    when 'K'
+      'badge-inverse'
+
+    end
+  end
 end
