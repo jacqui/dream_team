@@ -3,12 +3,43 @@
     <i class="icon-list-alt"></i>
     Back
   <% end %>
-  <%= link_to edit_admin_player_path(@admin_player), :class => 'btn btn-primary' do %>
+  <%= link_to edit_admin_player_path(@player), :class => 'btn btn-primary' do %>
     <i class="icon-pencil icon-white"></i>
     Edit
   <% end %>
-  <h1>Listing admin_players</h1>
+  <h1><%= @player.full_name %></h1>
 </div>
 
 <dl>
+  <dt>Team:</dt>
+  <dd><%= link_to @player.team.name_and_location, [:admin, @player.team] %></dd>
+
+  <dt>Position:</dt>
+  <dd><%= @player.position %></dd>
+
+  <dt>First name:</dt>
+  <dd><%= @player.first_name %></dd>
+
+  <dt>Last name:</dt>
+  <dd><%= @player.last_name %></dd>
+
+  <dt>Bio:</dt>
+  <dd><%= @player.bio %></dd>
+
+  <dt>Full name:</dt>
+  <dd><%= @player.full_name %></dd>
+
+  <dt>Display name:</dt>
+  <dd><%= @player.display_name %></dd>
+
+  <dt>Short name:</dt>
+  <dd><%= @player.short_name %></dd>
+
+  <dt>Espn:</dt>
+  <dd><%= @player.espn_id %></dd>
+
+  <dt>Source:</dt>
+  <dd><%= @player.source %> #<%= @player.source_id %></dd>
+  
+
 </dl>
