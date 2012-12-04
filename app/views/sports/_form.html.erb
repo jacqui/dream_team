@@ -1,0 +1,14 @@
+<%= simple_form_for(@sport, :defaults => { :input_html => { :class => 'input-xlarge' } }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :description %>
+    <%= f.input :nyt_blog_url %>
+    <%= f.input :image_url %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => "btn-primary" %>
+  </div>
+<% end %>

@@ -28,14 +28,9 @@
   <tbody>
 <% @admin_players.each do |admin_player| %>
     <tr>
-      <td><%= admin_player.first_name %></td>
-      <td><%= admin_player.last_name %></td>
+      <td><%= admin_player.full_name %></td>
       <td><%= admin_player.position %></td>
       <td><%= admin_player.bio %></td>
-      <td><%= admin_player.full_name %></td>
-      <td><%= admin_player.display_name %></td>
-      <td><%= admin_player.short_name %></td>
-      <td><%= admin_player.espn_id %></td>
       <td><%= admin_player.source_id %></td>
       <td><%= admin_player.source %></td>
       <td><%= link_to 'Show', admin_player %></td>

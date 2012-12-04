@@ -1,0 +1,35 @@
+<div class="page-header">
+  <%= link_to new_sport_path, :class => 'btn btn-primary' do %>
+    <i class="icon-plus icon-white"></i>
+    New Sport
+  <% end %>
+  <h1>Listing sports</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Description</th>
+      <th>Nyt blog url</th>
+      <th>Image url</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+<% @sports.each do |sport| %>
+    <tr>
+      <td><%= sport.name %></td>
+      <td><%= sport.description %></td>
+      <td><%= sport.nyt_blog_url %></td>
+      <td><%= sport.image_url %></td>
+      <td><%= link_to 'Show', sport %></td>
+      <td><%= link_to 'Edit', edit_sport_path(sport) %></td>
+      <td><%= link_to 'Destroy', sport, confirm: 'Are you sure?', method: :delete %></td>
+    </tr>
+<% end %>
+  </tbody>
+</table>

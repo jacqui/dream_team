@@ -1,4 +1,5 @@
 DreamTeam::Application.routes.draw do
+
   scope ":project" do
 
     root :to => 'picks#new'
@@ -7,7 +8,8 @@ DreamTeam::Application.routes.draw do
     # Admin-only routes
     unless Rails.env.production?
       namespace :admin do
-        root :to => "teams#index"
+        root :to => "sports#index"
+        resources :sports
         resources :players
         resources :picks
         resources :readers

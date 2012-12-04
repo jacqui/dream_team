@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203054717) do
+ActiveRecord::Schema.define(:version => 20121204135149) do
 
   create_table "pick_windows", :force => true do |t|
     t.datetime "window_start"
@@ -32,17 +32,12 @@ ActiveRecord::Schema.define(:version => 20121203054717) do
   end
 
   create_table "players", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "position"
     t.text     "bio"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "team_id"
     t.string   "full_name"
-    t.string   "display_name"
-    t.string   "short_name"
-    t.string   "espn_id"
     t.integer  "source_id"
     t.string   "source"
     t.string   "slug"
@@ -65,20 +60,35 @@ ActiveRecord::Schema.define(:version => 20121203054717) do
 
   add_index "readers", ["nytimes_id"], :name => "index_readers_on_nytimes_id"
 
+  create_table "sports", :force => true do |t|
+    t.string   "name"
+    t.text     "description"
+    t.string   "nyt_blog_url"
+    t.string   "image_url"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
   create_table "teams", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "location"
     t.string   "color"
     t.string   "abbreviation"
-    t.string   "web_link"
-    t.string   "api_link"
-    t.string   "news_api_link"
-    t.string   "mobile_link"
-    t.string   "notes_api_link"
-    t.string   "espn_id"
+    t.integer  "sport_id"
+    t.string   "league"
+    t.string   "source"
+    t.integer  "source_id"
+    t.string   "conference"
+    t.string   "division"
   end
+
+  add_index "teams", ["abbreviation"], :name => "index_teams_on_abbreviation"
+  add_index "teams", ["league"], :name => "index_teams_on_league"
+  add_index "teams", ["location"], :name => "index_teams_on_location"
+  add_index "teams", ["name"], :name => "index_teams_on_name"
+  add_index "teams", ["sport_id"], :name => "index_teams_on_sport_id"
 
   create_table "unit_actions", :force => true do |t|
     t.integer  "points"
