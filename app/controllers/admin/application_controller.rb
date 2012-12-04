@@ -19,8 +19,9 @@ class Admin::ApplicationController < ActionController::Base
   # gem.
   def set_reader
     @reader = Reader.first || Reader.create!(
-      :first_name => "Michael",
-      :last_name => "Strickland"
+      :name => "Michael Strickland",
+      :username => "moriogawa",
+      :nytimes_id => "47860851"
     )
   end
 
