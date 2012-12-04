@@ -46,7 +46,6 @@ class EspnApi
   end
 
   def load_teams
-    Team.destroy_all
     league = 'nfl' # TODO: variablize for other sports
     teams_data.each do |team_data|
       team = Team.where(:sport => sport,
