@@ -1,7 +1,7 @@
 class Team < ActiveRecord::Base
   has_many :players
 
-  attr_accessible :name, :abbreviation, :location, :sport, :league, :color, :source, :source_id
+  attr_accessible :name, :abbreviation, :location, :sport, :league, :conference, :division, :color, :source, :source_id
 
   validates_presence_of :name, :abbreviation, :location, :sport, :league
 
