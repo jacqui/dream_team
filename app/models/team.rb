@@ -1,9 +1,9 @@
 class Team < ActiveRecord::Base
   has_many :players
 
-  attr_accessible :name, :abbreviation, :location, :color, :web_link, :api_link, :news_api_link, :notes_api_link, :mobile_link, :espn_id
+  attr_accessible :name, :abbreviation, :location, :sport, :league, :conference, :division, :color, :source, :source_id
 
-  validates_presence_of :name, :abbreviation, :location
+  validates_presence_of :name, :abbreviation, :location, :sport, :league
 
   def name_and_location
     [location, name].join(" ")
@@ -12,4 +12,5 @@ class Team < ActiveRecord::Base
   def to_param
     abbreviation.downcase
   end
+
 end

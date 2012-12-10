@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121203054717) do
+ActiveRecord::Schema.define(:version => 20121204140253) do
 
   create_table "pick_buckets", :force => true do |t|
     t.string   "pick_type",                        :null => false
@@ -42,17 +42,12 @@ ActiveRecord::Schema.define(:version => 20121203054717) do
   end
 
   create_table "players", :force => true do |t|
-    t.string   "first_name"
-    t.string   "last_name"
     t.string   "position"
     t.text     "bio"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
     t.integer  "team_id"
     t.string   "full_name"
-    t.string   "display_name"
-    t.string   "short_name"
-    t.string   "espn_id"
     t.integer  "source_id"
     t.string   "source"
     t.string   "slug"
@@ -77,18 +72,23 @@ ActiveRecord::Schema.define(:version => 20121203054717) do
 
   create_table "teams", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
     t.string   "location"
     t.string   "color"
     t.string   "abbreviation"
-    t.string   "web_link"
-    t.string   "api_link"
-    t.string   "news_api_link"
-    t.string   "mobile_link"
-    t.string   "notes_api_link"
-    t.string   "espn_id"
+    t.string   "league"
+    t.string   "source"
+    t.integer  "source_id"
+    t.string   "conference"
+    t.string   "division"
+    t.string   "sport"
   end
+
+  add_index "teams", ["abbreviation"], :name => "index_teams_on_abbreviation"
+  add_index "teams", ["league"], :name => "index_teams_on_league"
+  add_index "teams", ["location"], :name => "index_teams_on_location"
+  add_index "teams", ["name"], :name => "index_teams_on_name"
 
   create_table "unit_actions", :force => true do |t|
     t.integer  "points"

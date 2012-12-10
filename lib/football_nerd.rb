@@ -28,7 +28,7 @@ class FootballNerd
       if team = Team.find_by_abbreviation(node['Team'])
         player = Player.new(:team => team, :full_name => node['Name'], :position => node['Position'], :source_id => node['playerId'], :source => "api.fantasyfootballnerd.com")
         player.save!
-        puts "Saved: #{[team.name, player.full_name].join(": ")}"
+        puts player.full_name 
       else
         missing_teams << node['Team']
       end
