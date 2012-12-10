@@ -9,7 +9,7 @@
   list-style: none;
   margin: 0 10px 10px 0;
   float: left;
-  width: 180px;
+  width: 162px;
   height: 40px;
   background: #ddd;
   padding: 0 8px;
@@ -29,24 +29,22 @@
 }
 
 .round-meta {
-  width: 25%;
-  float: left;
 }
 
 .buckets {
-  margin: 0;
-  width: 75%;
-  float: right;
+  clear: both;
+  margin: 0 auto;
+  width: 571px;
 }
 .buckets .bucket {
   list-style: none;
   margin: 0 0px 10px 10px;
-  float: right;
+  float: left;
   width: 120px;
   height: 120px;
   background: #ccc;
-  padding: 0 8px;
-  border-radius: 5px;
+  border-radius: 90px;
+  padding: 30px;
 }
 .buckets .bucket:hover {
   background: #d4d4d4;

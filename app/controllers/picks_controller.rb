@@ -38,12 +38,30 @@ class PicksController < ApplicationController
   def update
     params[:buckets].each do |idx, b|
       bucket = PickBucket.find(b["id"])
-      b["player_ids"].each do |player_id|
+      b["player_ids"] ||= []
+
+      # Find the existing picks
+      existing = Pick.where(
+        :pick_type => b["pick_type"],
+        :project_id => @project.id,
+        :pick_window_id => @pick_window.id,
+        :pick_bucket_id => bucket.id,
+        :reader_id => @reader.id
+      )
+
+      # Delete any not in the new set
+      existing.reject { |pick| b["player_ids"].include?(pick.id) }.map(&:destroy)
+
+      # Add any new players
+      pp b
+      to_create = b["player_ids"] - existing.map(&:id).map(&:to_s)
+      to_create.each do |player_id|
         Pick.create(
           :pick_id => player_id,
           :pick_type => b["pick_type"],
           :project_id => @project.id,
           :pick_window_id => @pick_window.id,
+          :pick_bucket_id => bucket.id,
           :reader_id => @reader.id
         )
       end

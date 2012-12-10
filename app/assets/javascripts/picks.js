@@ -33,7 +33,7 @@
 
     Picker.prototype.initialize_buckets = function(data) {
       var picker = this;
-      return _.map(data, function(bucket_data) {
+      var buckets = _.map(data, function(bucket_data) {
         var bucket = new Bucket({
           picker: picker,
           data: bucket_data
@@ -41,6 +41,10 @@
         $(picker.sel.bucket_container).append(bucket.el);
         return bucket;
       });
+
+      buckets[0].select();
+
+      return buckets;
     };
 
     Picker.prototype.submit = function() {
@@ -66,7 +70,9 @@
       };
     };
 
+    // TODO: stubbed
     Picker.prototype.is_valid = function() {
+      return true;
       return _.all(_.map(this.buckets, function(b) { return b.is_valid() }), _.identity);
     };
 
