@@ -22,9 +22,12 @@
   <tbody>
     <% @team.players.each do |player| %>
       <tr>
-        <td><%= link_to player.full_name, edit_admin_player_path(player) %></td>
-        <td><%= player.position %></td>
-        <td><%= link_to 'x', [:admin, player], confirm: 'Are you sure?', method: :delete %></td>
+        <td>
+          <%= link_to player.full_name, edit_admin_player_path(player) %>
+        </td>
+        <td>
+          <span class="badge <%= player.badge_color %>"><%= player.position %></span>
+        </td>
       </tr>
     <% end %>
   </tbody>

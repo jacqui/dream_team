@@ -8,8 +8,7 @@ DreamTeam::Application.routes.draw do
     # Admin-only routes
     unless Rails.env.production?
       namespace :admin do
-        root :to => "sports#index"
-        resources :sports
+        root :to => "teams#index"
         resources :players
         resources :picks
         resources :readers

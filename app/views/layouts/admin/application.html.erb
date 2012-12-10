@@ -28,9 +28,9 @@
         <%= link_to content_for?(:title) ? yield(:title) : "Dream Team", root_path, :class => "brand" %>
         <div class="nav-collapse">
           <ul class="nav">
-            <li class="active"><a href="#">Home</a></li>
-            <li><a href="#about">About</a></li>
-            <li><a href="#contact">Contact</a></li>
+            <% Project.all.each do |project| %>
+              <li class="<%= 'active' if @project.slug == project.slug %>"><%= link_to project.name, admin_teams_path(:project => project.slug) %></li>
+            <% end %>
           </ul>
           <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>
         </div>
@@ -46,17 +46,9 @@
             <% Project.all.each do |project| %>
               <li class="<%= 'active' if project.slug == params[:project] %>"><a href="/<%= project.slug %>"><%= project.name %></a></li>
             <% end %>
-            <% if @team %>
-              <li class="nav-header">Team</li>
-              <li class="active"><%= link_to @team.name, admin_team_path(@team) %></li>
-              <% @team.players.each do |player| %>
-                <li> <%= link_to "<span class='badge #{player.badge_color}'>#{player.position}</span>#{player.full_name}".html_safe, admin_player_path(player) %></li>
-              <% end %>
-            <% else %>
-              <li class="nav-header">Teams</li>
-              <% Team.all.each do |team| %>
-                <li class="<%= 'active' if @team && @team == team %>"><%= link_to team.name, admin_team_path(team) %></li>
-              <% end %>
+            <li class="nav-header">Teams</li>
+            <% Team.all.each do |team| %>
+              <li class="<%= 'active' if @team && @team == team %>"><%= link_to team.name, admin_team_path(team) %></li>
             <% end %>
 
             </ul>
