@@ -23,22 +23,3 @@
     }
   });
 </script>
-
-<% if false %>
-<%= form_for @pick, :url => new_pick_path, :id => "new-pick" do |f| %>
-  <%= f.hidden_field :pick_id, :class => "pick_id" %>
-  <%= f.hidden_field :pick_type, :class => "pick_type"%>
-
-  <%= f.submit "Save", :class => "btn btn-success" %>
-<% end %>
-
-<div class="pick-form">
-  <ul class="candidates">
-  <% @candidates.each do |player| %>
-    <li class="player" data-player-id="<%= player.id %>">
-      <h5><%= player.full_name %></h5>
-    </li>
-  <% end %>
-  <ul>
-</div>
-<% end %>
