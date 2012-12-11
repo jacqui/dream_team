@@ -19,19 +19,27 @@ class Player < ActiveRecord::Base
     self.slug = full_name.parameterize
   end
 
-  def badge_color
-    case position
-    when 'QB'
-      'badge-success'
-    when 'RB'
-      'badge-warning'
-    when 'WR'
-      'badge-important'
-    when 'TE'
-      'badge-info'
-    when 'K'
-      'badge-inverse'
+  NFL_POSITIONS = { 
+    'QB' => { 'name' => 'Quarterback', 'badge' => 'success' },
+    'RB' => { 'name' => 'Running Back', 'badge' => 'warning' },
+    'WR' => { 'name' => 'Wide Receiver', 'badge' => 'important' },
+    'TE' => { 'name' => 'Tight End', 'badge' => 'info' },
+    'K' => { 'name' => 'K', 'badge' => 'inverse' }
+  }
 
+  def badge_color
+    if NFL_POSITIONS.key?(position)
+      ['badge', NFL_POSITIONS[position]['badge']].join('-')
+    else
+      'badge'
+    end
+  end
+
+  def position_name
+    if NFL_POSITIONS.key?(position)
+      NFL_POSITIONS[position]['name']
+    else
+      position
     end
   end
 end

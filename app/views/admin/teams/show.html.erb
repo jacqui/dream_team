@@ -26,7 +26,7 @@
           <%= link_to player.full_name, edit_admin_player_path(player) %>
         </td>
         <td>
-          <span class="badge <%= player.badge_color %>"><%= player.position %></span>
+          <span class="badge <%= player.badge_color %>" title="<%= player.position_name %>"><%= player.position %></span>
         </td>
       </tr>
     <% end %>

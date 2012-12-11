@@ -1,5 +1,5 @@
 class Team < ActiveRecord::Base
-  has_many :players, :order => :position
+  has_many :players, :order => "position, full_name"
 
   attr_accessible :name, :abbreviation, :location, :sport, :league, :conference, :division, :color, :source, :source_id
 
