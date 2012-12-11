@@ -20,7 +20,6 @@
   cursor: pointer;
 }
 .candidates .player.selected {
-  background: #51A351;
   color: white;
 }
 
@@ -34,6 +33,7 @@
 .buckets {
   clear: both;
   margin: 0 auto;
+  padding-bottom: 15px;
   width: 571px;
 }
 .buckets .bucket {
@@ -45,14 +45,14 @@
   background: #ccc;
   border-radius: 90px;
   padding: 30px;
+  text-align: center;
 }
 .buckets .bucket:hover {
   background: #d4d4d4;
   cursor: pointer;
 }
-.buckets .bucket.selected,
-.buckets .bucket.selected:hover {
-  background: #51A351;
+.buckets .bucket.selected {
+  color: white;
 }
 
 .bucket-picks {
@@ -62,3 +62,10 @@
   list-style: none;
   font-weight: bold;
 }
+
+.player.selected.player-pick-type-qb, 
+.bucket.selected.bucket-pick-type-qb { background: #468847; }
+.player.selected.player-pick-type-rb,
+.bucket.selected.bucket-pick-type-rb { background: #F89406; }
+.player.selected.player-pick-type-wr,
+.bucket.selected.bucket-pick-type-wr { background: #B94A48; }

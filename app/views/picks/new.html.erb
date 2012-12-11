@@ -1,6 +1,6 @@
 <div class="row">
   <div class="round-meta">
-    <button class="pull-right submit-buckets btn btn-primary">Save</button>
+    <!--<button class="pull-right submit-buckets btn btn-primary">Save</button>-->
     <% if @pick_window.present? %>
       <h4>Round <%= @pick_window.index %> / <%= @pick_window.project.pick_windows.count %></h4>
       <%= @pick_window.window_start.strftime("%m/%d/%Y") %> - <%= @pick_window.window_end.strftime("%m/%d/%Y") %>
@@ -10,13 +10,13 @@
   </div>
 </div>
 
-<ul class="buckets" id="buckets"></ul>
+<ul class="buckets clearfix" id="buckets"></ul>
 
-<ul class="candidates" id="pick-form"></ul>
+<ul class="candidates clearfix" id="pick-form"></ul>
 
 <script type="text/javascript">
   var picker = new Picker({
-    players: <%= raw @candidates.to_json %>,
+    players: <%= raw @candidates.map(&:to_json).to_json %>,
     buckets: <%= raw @pick_buckets.map(&:to_json).to_json %>,
     endpoints: {
       update: "<%= update_picks_path %>"

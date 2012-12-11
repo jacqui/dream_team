@@ -3,7 +3,7 @@ class PicksController < ApplicationController
   before_filter :set_pick_window
 
   def new
-    @candidates = Player.all[0..20]
+    @candidates = @pick_window.candidates
 
     # TODO: Filter to only those players that will be competing this period.
     # @candidates = @candidates.in_window(@pick_window)
@@ -53,7 +53,6 @@ class PicksController < ApplicationController
       existing.reject { |pick| b["player_ids"].include?(pick.id) }.map(&:destroy)
 
       # Add any new players
-      pp b
       to_create = b["player_ids"] - existing.map(&:id).map(&:to_s)
       to_create.each do |player_id|
         Pick.create(

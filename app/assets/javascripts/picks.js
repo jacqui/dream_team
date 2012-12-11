@@ -16,7 +16,7 @@
     };
 
     Picker.prototype.bindings = function() {
-      $('.submit-buckets').bind('click', _.bind(this.submit, this));
+      // $('.submit-buckets').bind('click', _.bind(this.save, this));
     };
 
     Picker.prototype.initialize_players = function(data) {
@@ -47,16 +47,16 @@
       return buckets;
     };
 
-    Picker.prototype.submit = function() {
+    Picker.prototype.save = function() {
       if (this.is_valid()) {
         this.ajax({
           type: "POST",
           url: this.endpoints.update,
           data: this.serialize(),
-          success: function() {alert('done!');},
+          success: function() {console.log('saved')},
         });
       } else {
-        alert('invalid');
+        alert('invalid update');
       }
     };
 
@@ -123,7 +123,7 @@
     function Player(config) {
       this.picker = config.picker;
       this.data = config.data;
-      this.el = $("<li class='player nytint-hidden'></li>");
+      this.el = $("<li class='player nytint-hidden player-pick-type-" + config.data.position.toLowerCase() + "'></li>");
       this.template = JST['picks/player'];
       this.bindings();
     };
@@ -173,7 +173,7 @@
     function Bucket(config) {
       this.picker = config.picker;
       this.data = config.data;
-      this.el = $("<li class='bucket'></li>");
+      this.el = $("<li class='bucket bucket-pick-type-" + config.data.pick_type.toLowerCase() + "'></li>");
       this.template = JST['picks/bucket'];
       this.bindings();
     };
@@ -207,6 +207,7 @@
           p.unselect();
         });
       }
+      this.picker.save();
       this.render();
     };
 

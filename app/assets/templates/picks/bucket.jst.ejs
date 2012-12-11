@@ -1,4 +1,6 @@
-<h4><%= bucket.pick_type %> (<%= bucket.count %>)</h4>
+<h4><%= bucket.pick_type %>
+ <% if (bucket.count > 1) { %>(<%= bucket.count %>)<% } %>
+</h4>
 <ul class="bucket-picks">
 <% _.each(picks, function(pick) { %>
   <li><%= pick.full_name %></li>

@@ -13,4 +13,15 @@ class PickWindow < ActiveRecord::Base
   def index
     project.pick_windows.index(self) + 1
   end
+
+  # Returns an array of all Players that are competiting within
+  # the pick window / i.e., are eligible to be picked.
+  # TODO: This is fake at the moment.
+  def candidates
+    players = []
+    players += Player.where(:position => "QB").first(20)
+    players += Player.where(:position => "RB").first(20)
+    players += Player.where(:position => "WR").first(20)
+    players
+  end
 end

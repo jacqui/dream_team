@@ -11,11 +11,14 @@ require 'football_nerd'
 
 Team.destroy_all
 Player.destroy_all
+Pick.destroy_all
+PickWindow.destroy_all
+PickBucket.destroy_all
 
 puts "Loading teams from the ESPN API..."
 espn = EspnApi.new('football')
 espn.load_teams
-espn.load_players
+# espn.load_players
 
 puts "Done loading teams from the ESPN API. We now have #{Team.count} teams stored!"
 
@@ -26,13 +29,17 @@ puts "Done loading players from the Football Nerd API. We now have #{Player.coun
 
 Project.create(:name => "Super Bowl 2013", :slug => "super-bowl-2013")
 project = Project.find_by_slug('super-bowl-2013')
-PickWindow.create(:project_id => project.id, :window_start => Date.yesterday.to_datetime, :window_end => Date.tomorrow.to_datetime)
+
+if project.current_pick_window.nil?
+  PickWindow.create(:project_id => project.id, :window_start => Date.yesterday.to_datetime, :window_end => (Date.today + 2.weeks).to_datetime)
+end
+
 PickWindow.all.each do |window|
   %w(QB RB WR).each_with_index do |pick_type, idx|
     PickBucket.create(
       :pick_window_id => window.id,
       :pick_type => pick_type,
-      :count => idx + 1,
+      :count => 1, # idx + 1,
       :required => true
     )
   end

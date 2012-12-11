@@ -5,6 +5,12 @@ class Player < ActiveRecord::Base
 
   validates_presence_of :full_name
 
+  def to_json
+    self.attributes.merge({
+      # :badge_color => badge_color
+    })
+  end
+
   def to_param
     slug
   end
