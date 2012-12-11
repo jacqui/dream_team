@@ -46,9 +46,12 @@
             <% Project.all.each do |project| %>
               <li class="<%= 'active' if project.slug == params[:project] %>"><a href="/<%= project.slug %>"><%= project.name %></a></li>
             <% end %>
-            <li class="nav-header">Teams</li>
-            <% Team.all.each do |team| %>
-              <li class="<%= 'active' if @team && @team == team %>"><%= link_to team.name, admin_team_path(team) %></li>
+
+            <% unless current_page?(:controller => 'teams', :action => 'index') %>
+              <li class="nav-header">Teams</li>
+              <% Team.all.each do |team| %>
+                <li class="<%= 'active' if @team && @team == team %>"><%= link_to team.name_and_location, admin_team_path(team) %></li>
+              <% end %>
             <% end %>
 
             </ul>
