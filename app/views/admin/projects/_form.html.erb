@@ -1,0 +1,19 @@
+<%= simple_form_for([:admin, @team], :defaults => { :input_html => { :class => 'input-xlarge' } }) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name %>
+    <%= f.input :league %>
+    <%= f.input :conference %>
+    <%= f.input :division %>
+    <%= f.input :abbreviation %>
+    <%= f.input :location %>
+    <%= f.input :color %>
+    <%= f.input :source_id, :label => "Source ID" %>
+    <%= f.input :source %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, :class => "btn-primary" %>
+  </div>
+<% end %>

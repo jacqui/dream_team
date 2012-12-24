@@ -11,7 +11,34 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20121204140253) do
+ActiveRecord::Schema.define(:version => 20121223221904) do
+
+  create_table "conferences", :force => true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.string   "slug"
+    t.integer  "league_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
+
+  create_table "divisions", :force => true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.string   "slug"
+    t.integer  "conference_id"
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
+  end
+
+  create_table "leagues", :force => true do |t|
+    t.string   "name"
+    t.string   "abbreviation"
+    t.string   "slug"
+    t.integer  "sport_id"
+    t.datetime "created_at",   :null => false
+    t.datetime "updated_at",   :null => false
+  end
 
   create_table "pick_buckets", :force => true do |t|
     t.string   "pick_type",                        :null => false
@@ -70,23 +97,29 @@ ActiveRecord::Schema.define(:version => 20121204140253) do
 
   add_index "readers", ["nytimes_id"], :name => "index_readers_on_nytimes_id"
 
+  create_table "sports", :force => true do |t|
+    t.string   "name"
+    t.string   "slug"
+    t.datetime "created_at", :null => false
+    t.datetime "updated_at", :null => false
+  end
+
   create_table "teams", :force => true do |t|
     t.string   "name"
-    t.datetime "created_at",   :null => false
-    t.datetime "updated_at",   :null => false
+    t.datetime "created_at",    :null => false
+    t.datetime "updated_at",    :null => false
     t.string   "location"
     t.string   "color"
     t.string   "abbreviation"
-    t.string   "league"
     t.string   "source"
     t.integer  "source_id"
-    t.string   "conference"
-    t.string   "division"
-    t.string   "sport"
+    t.integer  "sport_id"
+    t.integer  "conference_id"
+    t.integer  "division_id"
+    t.integer  "league_id"
   end
 
   add_index "teams", ["abbreviation"], :name => "index_teams_on_abbreviation"
-  add_index "teams", ["league"], :name => "index_teams_on_league"
   add_index "teams", ["location"], :name => "index_teams_on_location"
   add_index "teams", ["name"], :name => "index_teams_on_name"
 

@@ -25,11 +25,12 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </a>
-        <%= link_to content_for?(:title) ? yield(:title) : "Dream Team", root_path, :class => "brand" %>
+        <%= link_to content_for?(:title) ? yield(:title) : "Dream Team", admin_root_path, :class => "brand" %>
         <div class="nav-collapse">
           <ul class="nav">
+            <li><%= link_to 'Sports', admin_sports_path %></li>
             <% Project.all.each do |project| %>
-              <li class="<%= 'active' if @project.slug == project.slug %>"><%= link_to project.name, admin_teams_path(:project => project.slug) %></li>
+              <li class="<%= 'active' if @project && @project.slug == project.slug %>"><%= link_to project.name, admin_teams_path(:project => project.slug) %></li>
             <% end %>
           </ul>
           <p class="navbar-text pull-right">Logged in as <a href="#">username</a></p>

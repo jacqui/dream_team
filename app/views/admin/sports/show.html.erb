@@ -1,0 +1,39 @@
+<div class="page-header">
+  <%= link_to admin_sports_path, :class => 'btn' do %>
+    <i class="icon-list-alt"></i>
+    Back
+  <% end %>
+  <%= link_to edit_admin_sport_path(@sport), :class => 'btn btn-primary' do %>
+    <i class="icon-pencil icon-white"></i>
+    Edit
+  <% end %>
+  <h1><%= @sport.name %></h1>
+</div>
+
+<div class="page-header">
+  <%= link_to new_admin_league_path(:sport => @sport), :class => 'btn btn-success' do %>
+    <i class="icon-plus icon-white"></i>
+    Add
+  <% end %>
+  <h2>Leagues</h2>
+</div>
+
+<% @sport.leagues.each do |league| %>
+  <h3><%= "#{league.name} (#{league.abbreviation})" %>: Conferences</h3>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Name</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% league.conferences.each do |conference| %>
+        <tr>
+          <td><%= link_to "#{conference.name} (#{conference.abbreviation})", edit_admin_conference_path(conference) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
