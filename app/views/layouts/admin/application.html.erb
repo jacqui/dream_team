@@ -29,7 +29,7 @@
         <div class="nav-collapse">
           <ul class="nav">
             <li><%= link_to 'Sports', admin_sports_path %></li>
-            <% Project.all.each do |project| %>
+            <% @projects.each do |project| %>
               <li class="<%= 'active' if @project && @project.slug == project.slug %>"><%= link_to project.name, admin_teams_path(:project => project.slug) %></li>
             <% end %>
           </ul>
@@ -44,7 +44,7 @@
         <div class="well sidebar-nav">
           <ul class="nav nav-list">
             <li class="nav-header">Projects</li>
-            <% Project.all.each do |project| %>
+            <% @projects.each do |project| %>
               <li class="<%= 'active' if project.slug == params[:project] %>"><a href="/<%= project.slug %>"><%= project.name %></a></li>
             <% end %>
 
