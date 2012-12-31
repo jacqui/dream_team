@@ -1,7 +1,9 @@
 class Division < ActiveRecord::Base
-  attr_accessible :abbreviation, :name, :slug, :conference_id
   has_many :teams
   belongs_to :conference
+
+  attr_accessible :abbreviation, :name, :slug, :conference_id
+  validates_presence_of :abbreviation, :conference
 
   include Sluggish
 

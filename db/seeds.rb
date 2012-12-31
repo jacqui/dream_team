@@ -9,16 +9,16 @@
 require 'espn_api'
 require 'football_nerd'
 
-Team.destroy_all
-Player.destroy_all
-Pick.destroy_all
-PickWindow.destroy_all
-PickBucket.destroy_all
+puts "Populating sports, leagues, conferences and divisions..."
 
+
+# Team:
+#  attr_accessible :name, :abbreviation, :location, :sport, :league, :conference, :division, :color, :source, :source_id
+#  validates_presence_of :name, :abbreviation, :location, :sport, :league
+#
 puts "Loading teams from the ESPN API..."
 espn = EspnApi.new('football')
 espn.load_teams
-# espn.load_players
 
 puts "Done loading teams from the ESPN API. We now have #{Team.count} teams stored!"
 
