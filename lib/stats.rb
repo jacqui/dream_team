@@ -9,40 +9,29 @@ class Stats
     @base_url = "http://nytimes.stats.com/fb/"
   end
 
-### RB
-* Car (carries)
-* Fum (fumbles)
-
-### WR
-* Rec (receptions)
-* Fum (fumbles)
-
-### TE
-* Rec (receptions)
-* Fum (fumbles)
-
-### K
-* FGM (made)
-* FGA (attempted)
-
-### DEF
-* tackles
-* sacks
-* ff (forced fumbles) (opt)
-* CB/LB/DE/DT/S
+#### RB
+#* Car (carries)
+#* Fum (fumbles)
+#
+#### WR
+#* Rec (receptions)
+#* Fum (fumbles)
+#
+#### TE
+#* Rec (receptions)
+#* Fum (fumbles)
+#
+#### K
+#* FGM (made)
+#* FGA (attempted)
+#
+#### DEF
+#* tackles
+#* sacks
+#* ff (forced fumbles) (opt)
+#* CB/LB/DE/DT/S
 
   
-  def stats_for(position)
-    {
-      'QB' => ['G', 'Comp %', 'Int', 'Rating'],
-      'RB' => ['G', 'Carries', 'Int', 'Rating'],
-      'WR' => ['G', 'Comp %', 'Int', 'Rating'],
-      'TE' => ['G', 'Comp %', 'Int', 'Rating'],
-      'K' => ['G', 'Comp %', 'Int', 'Rating'],
-      'CB' => ['G', 'Comp %', 'Int', 'Rating'],
-    }[position]
-  end
-
   def parse_roster(team_name)
     # url = URI.join(base_url, path)
     full_path = File.join(Rails.root, "db", "data", "#{team_name}.html")
