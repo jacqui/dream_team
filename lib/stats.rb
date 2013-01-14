@@ -9,28 +9,6 @@ class Stats
     @base_url = "http://nytimes.stats.com/fb/"
   end
 
-#### RB
-#* Car (carries)
-#* Fum (fumbles)
-#
-#### WR
-#* Rec (receptions)
-#* Fum (fumbles)
-#
-#### TE
-#* Rec (receptions)
-#* Fum (fumbles)
-#
-#### K
-#* FGM (made)
-#* FGA (attempted)
-#
-#### DEF
-#* tackles
-#* sacks
-#* ff (forced fumbles) (opt)
-#* CB/LB/DE/DT/S
-
   
   def parse_roster(team_name)
     # url = URI.join(base_url, path)
@@ -54,6 +32,8 @@ class Stats
       box_stats = doc.at("table#shsPlayerStatBox").search("tr")
 
       case data['position']
+
+      # Offense
       when 'QB'
         key_stats = doc.at("table.shsTable.shsBorderTable").search("tr")[1].search("td")
         data['G'] = key_stats[2].inner_text
@@ -62,10 +42,27 @@ class Stats
         data['Int'] = key_stats[9].inner_text
 
       when "RB"
+        #* Car (carries)
+        #* Fum (fumbles)
+        key_stats = doc.at("table.shsTable.shsBorderTable").search("tr")[1].search("td")
+        data['G'] = key_stats[2].inner_text
+        data['Car'] = key_stats[5].inner_text
+        data['Fum'] = key_stats[8].inner_text
       when "WR"
+        #* Rec (receptions)
+        #* Fum (fumbles)
       when "TE"
+        #* Rec (receptions)
+        #* Fum (fumbles)
       when "K"
+        #* FGM (made)
+        #* FGA (attempted)
+
+      # Defense
       when /^CB|LB|DE|DT|S$/
+        #* tackles
+        #* sacks
+        #* ff (forced fumbles) (opt)
       else
         puts "#{data['name']}: failed finding stats for position '#{data['position']}'"
       end
