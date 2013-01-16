@@ -1,257 +1,46 @@
 team	number	name	position	college	G	TDS	PCT	Int	Car	Yards	FGM	XPM	Tackles	Sacks	FF	Rec
-Seahawks	89 	Doug Baldwin	WR	Stanford	14	
-3
-				
-366
-						
-29
-Seahawks	52 	Allen Bradford	LB	USC	1	
--
-							
--
-	
--
-	0	
-Seahawks	99 	Alan Branch	DT	Michigan	16	
-0
-							
-29
-	
-1.0
-	0	
-Seahawks	39 	Brandon Browner	CB	Oregon State	12	
-3
-							
-44
-	
-0.0
-	3	
-Seahawks	79 	Red Bryant	DE	Texas A&M	16	
-0
-							
-24
-	
-0.0
-	0	
-Seahawks	10 	Deon Butler	WR	Penn State	1	
--
-				
--
-						
--
-Seahawks	31 	Kam Chancellor	S	Virginia Tech	16	
-0
-							
-91
-	
-0.0
-	1	
-Seahawks	91 	Chris Clemons	DE	Georgia	16	
-0
-							
-40
-	
-11.5
-	3	
-Seahawks	55 	Heath Farwell	LB	San Diego State	16	
-0
-							
-4
-	
-0.0
-	0	
-Seahawks	15 	Matt Flynn	QB	LSU	3	
-0
-	55.6	0								
-Seahawks	27 	Winston Guy	S	Kentucky	2	
--
-							
--
-	
--
-	0	
-Seahawks	4 	Steven Hauschka	K	North Carolina State	16	
-118
-					
-24
-	
-46
-				
-Seahawks	56 	Leroy Hill	LB	Clemson	13	
-0
-							
-47
-	
-1.5
-	1	
-Seahawks	94 	Jaye Howard	DT	Florida	2	
--
-							
--
-	
--
-	0	
-Seahawks	51 	Bruce Irvin	DE	West Virginia	16	
-0
-							
-17
-	
-8.0
-	1	
-Seahawks	32 	Jeron Johnson	S	Boise State	16	
-0
-							
-4
-	
-2.0
-	1	
-Seahawks	11 	Jermaine Kearse	WR	Washington	7	
-0
-				
-31
-						
-3
-Seahawks	20 	Jeremy Lane	CB	Northwestern State	13	
-0
-							
-11
-	
-0.0
-	0	
-Seahawks	24 	Marshawn Lynch	RB	California	16	
-11
-			2012	
-1590
-						
-Seahawks	42 	Chris Maragos	S	Wisconsin	16	
-0
-							
-4
-	
-0.0
-	0	
-Seahawks	41 	Byron Maxwell	CB	Clemson	9	
-0
-							
-6
-	
-0.0
-	0	
-Seahawks	85 	Anthony McCoy	TE	USC	16	
-3
-				
-291
-						
-18
-Seahawks	69 	Clinton McDonald	DT	Memphis	14	
-0
-							
-25
-	
-0.0
-	0	
-Seahawks	84 	Sean McGrath	TE	Henderson State	2	
--
-				
--
-						
--
-Seahawks	92 	Brandon Mebane	DT	California	16	
-0
-							
-56
-	
-3.0
-	0	
-Seahawks	86 	Zach Miller	TE	Arizona State	16	
-3
-				
-396
-						
-38
-Seahawks	57 	Mike Morgan	LB	USC	16	
-0
-							
-12
-	
-0.0
-	0	
-Seahawks	18 	Sidney Rice	WR	South Carolina	16	
-7
-				
-748
-						
-50
-Seahawks	26 	Michael Robinson	RB	Penn State	16	
-0
-			2012	
-49
-						
-Seahawks	98 	Greg Scruggs	DE	Louisville	11	
-0
-							
-6
-	
-2.0
-	0	
-Seahawks	25 	Richard Sherman	CB	Stanford	16	
-8
-							
-63
-	
-1.0
-	3	
-Seahawks	53 	Malcolm Smith	LB	USC	16	
-0
-							
-17
-	
-0.0
-	0	
-Seahawks	81 	Golden Tate	WR	Notre Dame	15	
-7
-				
-688
-						
-45
-Seahawks	29 	Earl Thomas	S	Texas	16	
-3
-							
-61
-	
-0.0
-	1	
-Seahawks	23 	Marcus Trufant	CB	Washington State	12	
-0
-							
-34
-	
-0.0
-	1	
-Seahawks	22 	Robert Turbin	RB	Utah State	16	
-0
-			2012	
-354
-						
-Seahawks	54 	Bobby Wagner	LB	Utah State	16	
-3
-							
-139
-	
-2.0
-	0	
-Seahawks	33 	Leon Washington	RB	Florida State	16	
-1
-			2012	
-83
-						
-Seahawks	3 	Russell Wilson	QB	Wisconsin	16	
-26
-	64.1	10								
-Seahawks	50 	K.J. Wright	LB	Mississippi State	15	
-1
-							
-96
-	
-1.0
-	1	
+Giants	 	Kris Adams	WR	UTEP	3	0				26						2
+Giants	20 	Prince Amukamara	CB	Nebraska	13	1							53	0.0	0	
+Giants	96 	Marvin Austin	DT	North Carolina	8	0							8	0.0	0	
+Giants	13 	Ramses Barden	WR	Cal Poly	12	0				220						14
+Giants	85 	Martellus Bennett	TE	Texas A&M	16	5				626						55
+Giants	95 	Rocky Bernard	DT	Texas A&M	12	0							30	1.0	0	
+Giants	93 	Chase Blackburn	LB	Akron	15	1							94	3.0	3	
+Giants	59 	Michael Boley	LB	Southern Miss	16	3							91	0.5	0	
+Giants	44 	Ahmad Bradshaw	RB	Marshall	14	6			2012	1015						
+Giants	27 	Stevie Brown	S	Michigan	16	8							66	0.0	2	
+Giants	99 	Chris Canty	DT	Virginia	9	0							26	3.0	0	
+Giants	8 	David Carr	QB	Fresno State	2	0	66.7	0								
+Giants	80 	Victor Cruz	WR	Massachusetts	16	10				1092						86
+Giants	51 	Zak DeOssie	LB	Brown	16	-							-	-	0	
+Giants	36 	Terrence Frederick	CB	Texas A&M	2	-							-	-	0	
+Giants	58 	Mark Herzlich	LB	Boston College	16	0							20	0.0	0	
+Giants	31 	Will Hill	S	Florida	12	0							27	0.0	0	
+Giants	87 	Domenik Hixon	WR	Akron	13	2				567						39
+Giants	28 	Jayron Hosley	CB	Virginia Tech	12	1							36	0.0	1	
+Giants	45 	Henry Hynoski	RB	Pittsburgh	16	0			2012	20						
+Giants	12 	Jerrel Jernigan	WR	Troy	9	0				22						3
+Giants	97 	Linval Joseph	DT	East Carolina	16	0							59	4.0	1	
+Giants	94 	Mathias Kiwanuka	LB	Boston College	16	0							31	3.0	0	
+Giants	38 	Kregg Lumpkin	RB	Georgia	5	0			2012	42						
+Giants	10 	Eli Manning	QB	Mississippi	16	26	59.9	15								
+Giants	88 	Hakeem Nicks	WR	North Carolina	13	3				692						53
+Giants	71 	Adewale Ojomo	DE	Miami (FL)	1	-							-	-	0	
+Giants	86 	Bear Pascoe	TE	Fresno State	15	1				35						4
+Giants	52 	Spencer Paysinger	LB	Oregon	16	0							19	0.0	0	
+Giants	21 	Kenny Phillips	S	Miami (FL)	7	0							24	0.0	0	
+Giants	90 	Jason Pierre-Paul	DE	South Florida	16	1							66	6.5	1	
+Giants	82 	Rueben Randle	WR	LSU	16	3				298						19
+Giants	55 	Keith Rivers	LB	USC	11	0							38	0.0	0	
+Giants	81 	Adrien Robinson	TE	Cincinnati	2	-				-						-
+Giants	26 	Antrel Rolle	S	Miami (FL)	16	2							92	0.0	1	
+Giants	39 	Tyler Sash	S	Iowa	7	0							4	0.0	0	
+Giants	41 	Ryan Torain	RB	Arizona State	2	-			2012	-						
+Giants	98 	Adrian Tracy	DE	William & Mary	16	0							7	1.0	0	
+Giants	30 	Justin Tryon	CB	Arizona State	16	0							6	0.0	0	
+Giants	91 	Justin Tuck	DE	Notre Dame	15	0							45	4.0	0	
+Giants	9 	Lawrence Tynes	K	Troy	16	145					33	46				
+Giants	72 	Osi Umenyiora	DE	Troy	16	0							42	6.0	2	
+Giants	23 	Corey Webster	CB	LSU	16	4							58	0.0	0	
+Giants	57 	Jacquian Williams	LB	South Florida	10	0							26	1.0	0	
+Giants	22 	David Wilson	RB	Virginia Tech	16	4			2012	358						

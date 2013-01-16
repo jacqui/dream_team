@@ -9,11 +9,35 @@ class Stats
     @base_url = "http://nytimes.stats.com/fb/"
   end
 
-  
-  def parse_roster(team_name)
-    # url = URI.join(base_url, path)
-    full_path = File.join(Rails.root, "db", "data", "#{team_name}.html")
-    doc = Nokogiri::HTML open(full_path)
+  def get_roster_for_team(team_name, opts = {})
+    file_path = File.join(Rails.root, "db", "data", "#{team_name}.html")
+    if File.exists?(file_path)
+      open(file_path).read
+    elsif opts[:team_id]
+      url = "http://nytimes.stats.com/fb/teamstats.asp?tm=19&type=rosters"
+      page = open(url).read
+      open(file_path, 'w') { |f| f.write page }
+      page
+    else
+      raise "You must pass a :team_id to .parse_roster to download a new roster page! (http://nytimes.stats.com/fb/teams.asp)"
+    end
+  end
+
+  def get_stats_for_player(url)
+    file_path = File.join(Rails.root, "db", "data", "url", "#{url.parameterize}")
+    if File.exists?(file_path)
+      open(file_path).read
+    else
+      page = open(url).read
+      FileUtils.mkdir_p(File.join(Rails.root, "db", "data", "url"))
+      open(file_path, 'w') { |f| f.write page }
+      page
+    end
+  end
+
+  def parse_roster(team_name, opts = {})
+    doc = Nokogiri::HTML get_roster_for_team(team_name, opts)
+
     rows = doc.at("table.shsTable.shsBorderTable").search("tr")
 
     player_rows = rows[1,rows.size]
@@ -31,7 +55,8 @@ class Stats
 
       next unless %w(QB RB TE WR K CB LB DE DT S).include?(data['position'])
       stats_url = [@base_url, player_cells[1].at('a')['href']].join
-      stats_doc = Nokogiri::HTML open(stats_url)
+      stats_doc = Nokogiri::HTML get_stats_for_player(stats_url)
+      # stats_doc = Nokogiri::HTML open(stats_url)
 
       box_stats_table = stats_doc.at("table#shsPlayerStatBox")
       box_stats = nil
@@ -106,14 +131,15 @@ class Stats
       end
       data
     end
-    player_data_path = File.join(Rails.root, 'db', 'data', 'players_data_seahawks.json')
+
+    player_data_path = File.join(Rails.root, 'db', 'data', "players_data_#{team_name}.json")
     keys = players_data.first.keys
 
     File.open("db/data/datavault.txt", "w") do |f|
       f.puts keys.join("\t")
       players_data.compact.each do |playah|
         row_values = keys.map do |key|
-          playah[key]
+          playah[key].to_s.strip
         end
         f.puts row_values.join("\t")
       end
@@ -123,4 +149,4 @@ class Stats
   end
 end
 
-Stats.new.parse_roster('seahawks')
+Stats.new.parse_roster('giants', :team_id => 19)
