@@ -57,6 +57,8 @@ class Stats
       data['G'] = current_stats[2].inner_text
       data['TDS'] = box_stats[2].inner_text
 
+      %w(PCT Int Car Yards FGM XPM Tackles Sacks FF).each{|stat| data[stat] = '' }
+
       case data['position']
 
       # Offense
@@ -105,6 +107,17 @@ class Stats
       data
     end
     player_data_path = File.join(Rails.root, 'db', 'data', 'players_data_seahawks.json')
+    keys = players_data.first.keys
+
+    File.open("db/data/datavault.txt", "w") do |f|
+      f.puts keys.join("\t")
+      players_data.compact.each do |playah|
+        row_values = keys.map do |key|
+          playah[key]
+        end
+        f.puts row_values.join("\t")
+      end
+    end
     Oj.to_file(player_data_path, players_data)
     puts "Dumped player stats to #{player_data_path}"
   end

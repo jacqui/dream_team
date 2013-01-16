@@ -1,0 +1,257 @@
+team	number	name	position	college	G	TDS	PCT	Int	Car	Yards	FGM	XPM	Tackles	Sacks	FF	Rec
+Seahawks	89 	Doug Baldwin	WR	Stanford	14	
+3
+				
+366
+						
+29
+Seahawks	52 	Allen Bradford	LB	USC	1	
+-
+							
+-
+	
+-
+	0	
+Seahawks	99 	Alan Branch	DT	Michigan	16	
+0
+							
+29
+	
+1.0
+	0	
+Seahawks	39 	Brandon Browner	CB	Oregon State	12	
+3
+							
+44
+	
+0.0
+	3	
+Seahawks	79 	Red Bryant	DE	Texas A&M	16	
+0
+							
+24
+	
+0.0
+	0	
+Seahawks	10 	Deon Butler	WR	Penn State	1	
+-
+				
+-
+						
+-
+Seahawks	31 	Kam Chancellor	S	Virginia Tech	16	
+0
+							
+91
+	
+0.0
+	1	
+Seahawks	91 	Chris Clemons	DE	Georgia	16	
+0
+							
+40
+	
+11.5
+	3	
+Seahawks	55 	Heath Farwell	LB	San Diego State	16	
+0
+							
+4
+	
+0.0
+	0	
+Seahawks	15 	Matt Flynn	QB	LSU	3	
+0
+	55.6	0								
+Seahawks	27 	Winston Guy	S	Kentucky	2	
+-
+							
+-
+	
+-
+	0	
+Seahawks	4 	Steven Hauschka	K	North Carolina State	16	
+118
+					
+24
+	
+46
+				
+Seahawks	56 	Leroy Hill	LB	Clemson	13	
+0
+							
+47
+	
+1.5
+	1	
+Seahawks	94 	Jaye Howard	DT	Florida	2	
+-
+							
+-
+	
+-
+	0	
+Seahawks	51 	Bruce Irvin	DE	West Virginia	16	
+0
+							
+17
+	
+8.0
+	1	
+Seahawks	32 	Jeron Johnson	S	Boise State	16	
+0
+							
+4
+	
+2.0
+	1	
+Seahawks	11 	Jermaine Kearse	WR	Washington	7	
+0
+				
+31
+						
+3
+Seahawks	20 	Jeremy Lane	CB	Northwestern State	13	
+0
+							
+11
+	
+0.0
+	0	
+Seahawks	24 	Marshawn Lynch	RB	California	16	
+11
+			2012	
+1590
+						
+Seahawks	42 	Chris Maragos	S	Wisconsin	16	
+0
+							
+4
+	
+0.0
+	0	
+Seahawks	41 	Byron Maxwell	CB	Clemson	9	
+0
+							
+6
+	
+0.0
+	0	
+Seahawks	85 	Anthony McCoy	TE	USC	16	
+3
+				
+291
+						
+18
+Seahawks	69 	Clinton McDonald	DT	Memphis	14	
+0
+							
+25
+	
+0.0
+	0	
+Seahawks	84 	Sean McGrath	TE	Henderson State	2	
+-
+				
+-
+						
+-
+Seahawks	92 	Brandon Mebane	DT	California	16	
+0
+							
+56
+	
+3.0
+	0	
+Seahawks	86 	Zach Miller	TE	Arizona State	16	
+3
+				
+396
+						
+38
+Seahawks	57 	Mike Morgan	LB	USC	16	
+0
+							
+12
+	
+0.0
+	0	
+Seahawks	18 	Sidney Rice	WR	South Carolina	16	
+7
+				
+748
+						
+50
+Seahawks	26 	Michael Robinson	RB	Penn State	16	
+0
+			2012	
+49
+						
+Seahawks	98 	Greg Scruggs	DE	Louisville	11	
+0
+							
+6
+	
+2.0
+	0	
+Seahawks	25 	Richard Sherman	CB	Stanford	16	
+8
+							
+63
+	
+1.0
+	3	
+Seahawks	53 	Malcolm Smith	LB	USC	16	
+0
+							
+17
+	
+0.0
+	0	
+Seahawks	81 	Golden Tate	WR	Notre Dame	15	
+7
+				
+688
+						
+45
+Seahawks	29 	Earl Thomas	S	Texas	16	
+3
+							
+61
+	
+0.0
+	1	
+Seahawks	23 	Marcus Trufant	CB	Washington State	12	
+0
+							
+34
+	
+0.0
+	1	
+Seahawks	22 	Robert Turbin	RB	Utah State	16	
+0
+			2012	
+354
+						
+Seahawks	54 	Bobby Wagner	LB	Utah State	16	
+3
+							
+139
+	
+2.0
+	0	
+Seahawks	33 	Leon Washington	RB	Florida State	16	
+1
+			2012	
+83
+						
+Seahawks	3 	Russell Wilson	QB	Wisconsin	16	
+26
+	64.1	10								
+Seahawks	50 	K.J. Wright	LB	Mississippi State	15	
+1
+							
+96
+	
+1.0
+	1	
