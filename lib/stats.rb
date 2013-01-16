@@ -15,58 +15,99 @@ class Stats
     full_path = File.join(Rails.root, "db", "data", "#{team_name}.html")
     doc = Nokogiri::HTML open(full_path)
     rows = doc.at("table.shsTable.shsBorderTable").search("tr")
+
     player_rows = rows[1,rows.size]
+
     players_data = player_rows.map do |player_row|
       player_cells = player_row.search("td")
-      data = [
+
+      data = {
         "team" => team_name.titleize,
         "number" => player_cells[0].inner_text,
         "name" => player_cells[1].inner_text,
         "position" => player_cells[2].inner_text,
         "college" => player_cells[8].inner_text
-      ]
+      }
 
+      next unless %w(QB RB TE WR K CB LB DE DT S).include?(data['position'])
       stats_url = [@base_url, player_cells[1].at('a')['href']].join
       stats_doc = Nokogiri::HTML open(stats_url)
 
-      box_stats = doc.at("table#shsPlayerStatBox").search("tr")
+      box_stats_table = stats_doc.at("table#shsPlayerStatBox")
+      box_stats = nil
+
+      if box_stats_table
+        box_stats = box_stats_table.search("tr")[1].search("td")
+      else
+        require 'debugger'; Debugger.start; Debugger.settings[:autoeval] = 1; Debugger.settings[:autolist] = 1; debugger
+        puts box_stats_table
+      end
+
+      current_stats_row = if stats_table = stats_doc.at("h2.shsTableTitle ~ table")
+                            stats_table.search("tr").detect{|tr| tr.search("td").first.inner_text == "2012" }
+                          end
+
+      if current_stats_row.blank?
+        puts stats_url
+        puts " - no stats found for 2012"
+        next
+      end
+
+      current_stats = current_stats_row.search("td")
+      data['G'] = current_stats[2].inner_text
+      data['TDS'] = box_stats[2].inner_text
 
       case data['position']
 
       # Offense
       when 'QB'
-        key_stats = doc.at("table.shsTable.shsBorderTable").search("tr")[1].search("td")
-        data['G'] = key_stats[2].inner_text
-        data['PCT'] = key_stats[5].inner_text
-        data['TDS'] = key_stats[8].inner_text
-        data['Int'] = key_stats[9].inner_text
+        data['PCT'] = current_stats[5].inner_text
+        data['Int'] = current_stats[9].inner_text
 
       when "RB"
         #* Car (carries)
         #* Fum (fumbles)
-        key_stats = doc.at("table.shsTable.shsBorderTable").search("tr")[1].search("td")
-        data['G'] = key_stats[2].inner_text
-        data['Car'] = key_stats[5].inner_text
-        data['Fum'] = key_stats[8].inner_text
+        data['Car'] = current_stats[0].inner_text
+        data['Yards'] = box_stats[1].inner_text
+        # our pages don't seem to have this info. guh.
+        # data['Fum'] = current_stats[8].inner_text
       when "WR"
         #* Rec (receptions)
         #* Fum (fumbles)
+        data['Rec'] = box_stats[0].inner_text
+        data['Yards'] = box_stats[1].inner_text
+        # our pages don't seem to have this info. guh.
+        # data['Fum'] = current_stats[8].inner_text
       when "TE"
         #* Rec (receptions)
         #* Fum (fumbles)
+        data['Rec'] = box_stats[0].inner_text
+        data['Yards'] = box_stats[1].inner_text
+        # our pages don't seem to have this info. guh.
+        # data['Fum'] = current_stats[8].inner_text
       when "K"
         #* FGM (made)
         #* FGA (attempted)
+        data['FGM'] = box_stats[0].inner_text
+        data['XPM'] = box_stats[1].inner_text
 
       # Defense
       when /^CB|LB|DE|DT|S$/
         #* tackles
         #* sacks
         #* ff (forced fumbles) (opt)
+        data['Tackles'] = box_stats[0].inner_text
+        data['Sacks'] = box_stats[1].inner_text
+        data['FF'] = current_stats[11].inner_text
       else
         puts "#{data['name']}: failed finding stats for position '#{data['position']}'"
       end
+      data
     end
-    Oj.dump(players_data)
+    player_data_path = File.join(Rails.root, 'db', 'data', 'players_data_seahawks.json')
+    Oj.to_file(player_data_path, players_data)
+    puts "Dumped player stats to #{player_data_path}"
   end
 end
+
+Stats.new.parse_roster('seahawks')
