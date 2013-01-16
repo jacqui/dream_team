@@ -3,18 +3,50 @@ require 'nokogiri'
 require 'yaml'
 class Stats
 
-  attr_accessor :config, :api_key, :base_url
+  attr_accessor :config, :api_key, :base_url, :team_name, :team_id
 
-  def initialize
+  def initialize(team_name, opts = {})
+    @team_name = team_name
+    @team_id = opts[:team_id]
     @base_url = "http://nytimes.stats.com/fb/"
   end
 
-  def get_roster_for_team(team_name, opts = {})
+  def players_data
+    return @players_data if @players_data.present?
+    @players_data = _parse_roster
+  end
+
+  def self.to_data_vault(*stats)
+    File.open("db/data/datavault.txt", "w") do |f|
+      keys = stats.first.players_data.first.keys
+      f.puts keys.join("\t")
+
+      stats.each do |stat|
+
+        player_data_path = File.join(Rails.root, 'db', 'data', "players_data_#{stat.team_name}.json")
+        stat.players_data.compact.each do |playah|
+          row_values = keys.map do |key|
+            playah[key].to_s.strip
+          end
+          f.puts row_values.join("\t")
+        end
+
+        Oj.to_file(player_data_path, stat.players_data)
+        puts "Dumped player stats to #{player_data_path}"
+
+      end
+
+    end
+  end
+
+  private
+
+  def get_roster_for_team(opts = {})
     file_path = File.join(Rails.root, "db", "data", "#{team_name}.html")
     if File.exists?(file_path)
       open(file_path).read
-    elsif opts[:team_id]
-      url = "http://nytimes.stats.com/fb/teamstats.asp?tm=19&type=rosters"
+    elsif team_id
+      url = "http://nytimes.stats.com/fb/teamstats.asp?tm=#{team_id}&type=rosters"
       page = open(url).read
       open(file_path, 'w') { |f| f.write page }
       page
@@ -35,14 +67,14 @@ class Stats
     end
   end
 
-  def parse_roster(team_name, opts = {})
-    doc = Nokogiri::HTML get_roster_for_team(team_name, opts)
+  def _parse_roster(opts = {})
+    doc = Nokogiri::HTML get_roster_for_team(opts)
 
     rows = doc.at("table.shsTable.shsBorderTable").search("tr")
 
     player_rows = rows[1,rows.size]
 
-    players_data = player_rows.map do |player_row|
+    roster = player_rows.map do |player_row|
       player_cells = player_row.search("td")
 
       data = {
@@ -56,7 +88,6 @@ class Stats
       next unless %w(QB RB TE WR K CB LB DE DT S).include?(data['position'])
       stats_url = [@base_url, player_cells[1].at('a')['href']].join
       stats_doc = Nokogiri::HTML get_stats_for_player(stats_url)
-      # stats_doc = Nokogiri::HTML open(stats_url)
 
       box_stats_table = stats_doc.at("table#shsPlayerStatBox")
       box_stats = nil
@@ -132,21 +163,11 @@ class Stats
       data
     end
 
-    player_data_path = File.join(Rails.root, 'db', 'data', "players_data_#{team_name}.json")
-    keys = players_data.first.keys
-
-    File.open("db/data/datavault.txt", "w") do |f|
-      f.puts keys.join("\t")
-      players_data.compact.each do |playah|
-        row_values = keys.map do |key|
-          playah[key].to_s.strip
-        end
-        f.puts row_values.join("\t")
-      end
-    end
-    Oj.to_file(player_data_path, players_data)
-    puts "Dumped player stats to #{player_data_path}"
+    roster
   end
+
 end
 
-Stats.new.parse_roster('giants', :team_id => 19)
+giants = Stats.new('giants', :team_id => 19)
+jets = Stats.new('jets', :team_id => 20)
+Stats.to_data_vault(giants, jets)
