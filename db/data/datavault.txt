@@ -44,3 +44,46 @@ Giants	72 	Osi Umenyiora	DE	Troy	16	0							42	6.0	2
 Giants	23 	Corey Webster	CB	LSU	16	4							58	0.0	0	
 Giants	57 	Jacquian Williams	LB	South Florida	10	0							26	1.0	0	
 Giants	22 	David Wilson	RB	Virginia Tech	16	4			2012	358						
+Jets	39 	Antonio Allen	S	South Carolina	7	0							4	1.0	0	
+Jets	37 	Yeremiah Bell	S	Eastern Kentucky	16	0							87	1.0	0	
+Jets	54 	Nick Bellore	LB	Central Michigan	16	-							-	-	0	
+Jets	32 	Josh Bush	S	Wake Forest	16	0							2	0.0	0	
+Jets	98 	Quinton Coples	DE	North Carolina	16	0							30	5.5	0	
+Jets	31 	Antonio Cromartie	CB	Florida State	16	3							35	0.0	0	
+Jets	86 	Jeff Cumberland	TE	Illinois	15	3				359						29
+Jets	56 	Demario Davis	LB	Arkansas State	16	0							26	0.0	0	
+Jets	70 	Mike DeVito	DE	Maine	16	0							52	1.0	2	
+Jets	17 	Braylon Edwards	WR	Michigan	10	1				199						18
+Jets	93 	Kenrick Ellis	DT	Hampton	12	0							18	0.0	0	
+Jets	34 	Donnie Fletcher	CB	Boston College	3	-							-	-	0	
+Jets	2 	Nick Folk	K	Arizona	16	93					21	30				
+Jets	19 	Clyde Gates	WR	Abilene Christian	11	0				224						16
+Jets	23 	Shonn Greene	RB	Iowa	16	8			2012	1063						
+Jets	21 	John Griffin	RB	Massachusetts	1	-			2012	-						
+Jets	52 	David Harris	LB	Michigan	16	0							123	3.0	1	
+Jets	71 	Damon Harrison	DT	William Penn	5	-							-	-	0	
+Jets	36 	Lex Hilliard	RB	Montana	2	0			2012	2						
+Jets	 	Jaiquawn Jarrett	S	Temple	1	-							-	-	0	
+Jets	81 	Dustin Keller	TE	Purdue	8	2				317						28
+Jets	11 	Jeremy Kerley	WR	TCU	16	2				827						56
+Jets	30 	LaRon Landry	S	LSU	16	2							99	0.0	4	
+Jets	26 	Ellis Lankster	CB	West Virginia	15	2							29	1.0	1	
+Jets	14 	Greg McElroy	QB	Alabama	2	1	61.3	1								
+Jets	50 	Garrett McIntyre	LB	Fresno State	16	0							27	3.5	0	
+Jets	25 	Joe McKnight	RB	USC	15	0			2012	179						
+Jets	97 	Calvin Pace	LB	Wake Forest	16	0							55	3.0	0	
+Jets	91 	Sione Po'uha	DT	Utah	12	0							29	1.0	0	
+Jets	29 	Bilal Powell	RB	Louisville	14	4			2012	437						
+Jets	87 	Konrad Reuland	TE	Stanford	16	0				83						11
+Jets	6 	Mark Sanchez	QB	USC	15	13	54.3	18								
+Jets	55 	Ricky Sapp	LB	Clemson	4	0							0	0.0	0	
+Jets	85 	Chaz Schilens	WR	San Diego State	15	2				289						28
+Jets	57 	Bart Scott	LB	Southern Illinois	15	1							60	2.5	0	
+Jets	33 	Eric Smith	S	Michigan State	12	1							15	0.0	0	
+Jets	82 	Hayden Smith	TE	Metro State	5	0				16						1
+Jets	15 	Tim Tebow	QB	Florida	12	0	75.0	0								
+Jets	58 	Bryan Thomas	LB	UAB	12	0							24	2.5	0	
+Jets	27 	Darrin Walls	CB	Notre Dame	6	0							2	0.0	0	
+Jets	89 	Jordan White	WR	Western Michigan	3	0				13						1
+Jets	96 	Muhammad Wilkerson	DE	Temple	16	0							70	5.0	3	
+Jets	20 	Kyle Wilson	CB	Boise State	16	1							48	0.0	1	
