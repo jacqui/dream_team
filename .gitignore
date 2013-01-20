@@ -73,3 +73,5 @@ db/data/url/*
 # vim artifacts
 **.swp
 examples
+config/football_nerd.yml
+config/espn.yml
