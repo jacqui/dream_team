@@ -1,0 +1,28 @@
+<div class="page-header">
+  <%= link_to new_admin_sport_path, :class => 'btn btn-success' do %>
+    <i class="icon-plus icon-white"></i>
+    Add
+  <% end %>
+  <h1>Sports</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @sports.each do |sport| %>
+      <tr>
+        <td><%= link_to sport.name, admin_sport_path(sport) %></td>
+        <td>
+          <%= link_to 'e', [:admin, sport] %>
+          <%= link_to 'x', [:admin, sport], confirm: 'Are you sure?', method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

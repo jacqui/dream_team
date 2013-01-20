@@ -1,0 +1,28 @@
+<div class="page-header">
+  <%= link_to new_admin_project_path, :class => 'btn btn-primary' do %>
+    <i class="icon-plus icon-white"></i>
+    New project
+  <% end %>
+  <h1>projects</h1>
+</div>
+
+<table class="table table-bordered table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @projects.each do |project| %>
+      <tr>
+        <td><%= link_to project.name, admin_project_path(project) %></td>
+        <td>
+          <%= link_to 'e', [:admin, project] %>
+          <%= link_to 'x', [:admin, project], confirm: 'Are you sure?', method: :delete %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

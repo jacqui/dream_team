@@ -1,3 +1,71 @@
 // Place all the styles related to the picks controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
+
+.candidates {
+  margin: 0;
+}
+.candidates .player {
+  list-style: none;
+  margin: 0 10px 10px 0;
+  float: left;
+  width: 162px;
+  height: 40px;
+  background: #ddd;
+  padding: 0 8px;
+  border-radius: 5px;
+}
+.candidates .player:hover {
+  background: #d4d4d4;
+  cursor: pointer;
+}
+.candidates .player.selected {
+  color: white;
+}
+
+.candidates .player.nytint-hidden {
+  display: none;
+}
+
+.round-meta {
+}
+
+.buckets {
+  clear: both;
+  margin: 0 auto;
+  padding-bottom: 15px;
+  width: 571px;
+}
+.buckets .bucket {
+  list-style: none;
+  margin: 0 0px 10px 10px;
+  float: left;
+  width: 120px;
+  height: 120px;
+  background: #ccc;
+  border-radius: 90px;
+  padding: 30px;
+  text-align: center;
+}
+.buckets .bucket:hover {
+  background: #d4d4d4;
+  cursor: pointer;
+}
+.buckets .bucket.selected {
+  color: white;
+}
+
+.bucket-picks {
+  margin: 0;
+}
+.bucket-picks li {
+  list-style: none;
+  font-weight: bold;
+}
+
+.player.selected.player-pick-type-qb, 
+.bucket.selected.bucket-pick-type-qb { background: #468847; }
+.player.selected.player-pick-type-rb,
+.bucket.selected.bucket-pick-type-rb { background: #F89406; }
+.player.selected.player-pick-type-wr,
+.bucket.selected.bucket-pick-type-wr { background: #B94A48; }

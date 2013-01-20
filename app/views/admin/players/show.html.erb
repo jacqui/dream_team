@@ -1,0 +1,26 @@
+<div class="page-header">
+  <%= link_to admin_players_path, :class => 'btn' do %>
+    <i class="icon-list-alt"></i>
+    Back
+  <% end %>
+  <%= link_to edit_admin_player_path(@player), :class => 'btn btn-primary' do %>
+    <i class="icon-pencil icon-white"></i>
+    Edit
+  <% end %>
+  <h1><%= @player.full_name %></h1>
+</div>
+
+<dl>
+  <dt>Team:</dt>
+  <dd><%= link_to @player.team.name_and_location, [:admin, @player.team] %></dd>
+
+  <dt>Position:</dt>
+  <dd><%= @player.position %></dd>
+
+  <dt>Bio:</dt>
+  <dd><%= @player.bio %></dd>
+
+  <dt>Source:</dt>
+  <dd><%= @player.source %> #<%= @player.source_id %></dd>
+  
+</dl>

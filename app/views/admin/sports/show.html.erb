@@ -1,0 +1,56 @@
+<div class="page-header">
+  <%= link_to admin_sports_path, :class => 'btn' do %>
+    <i class="icon-list-alt"></i>
+    Back
+  <% end %>
+  <%= link_to edit_admin_sport_path(@sport), :class => 'btn btn-primary' do %>
+    <i class="icon-pencil icon-white"></i>
+    Edit
+  <% end %>
+  <%= link_to new_admin_league_path(:sport => @sport), :class => 'btn btn-success' do %>
+    <i class="icon-plus icon-white"></i>
+    Add League
+  <% end %>
+  <h1><%= @sport.name %> Leagues</h1>
+</div>
+
+<% @sport.leagues.each do |league| %>
+  <h3><%= "#{league.name} (#{league.abbreviation})" %></h3>
+
+  <table class="table table-bordered table-striped">
+    <thead>
+      <tr>
+        <th>Conferences
+          <%= link_to new_admin_conference_path(:league => league), :class => 'btn btn-success btn-mini' do %>
+            <i class="icon-plus icon-white"></i>
+          <% end %>
+        </th>
+        <th></th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% league.conferences.each do |conference| %>
+        <tr>
+          <td><%= link_to "#{conference.name} (#{conference.abbreviation})", edit_admin_conference_path(conference) %></td>
+          <td>
+            <%= conference.divisions.size %> divisions
+            <%= link_to new_admin_division_path(:conference => conference), :class => 'btn btn-success btn-mini' do %>
+              <i class="icon-plus icon-white"></i>
+            <% end %>
+          </td>
+        </tr>
+        <% if conference.divisions.any? %>
+          <% conference.divisions.each do |division| %>
+            <tr>
+              <td><%= link_to division.name, edit_admin_division_path(division) %></td>
+              <td>
+                <%= division.teams.size %> teams
+              </td>
+            </tr>
+          <% end %>
+        <% end %>
+      <% end %>
+    </tbody>
+  </table>
+<% end %>
