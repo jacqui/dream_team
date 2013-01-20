@@ -75,3 +75,4 @@ db/data/url/*
 examples
 config/football_nerd.yml
 config/espn.yml
+config/database.yml
