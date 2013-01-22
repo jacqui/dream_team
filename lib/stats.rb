@@ -17,7 +17,8 @@ class Stats
   end
 
   def self.to_data_vault(*stats)
-    File.open("db/data/datavault.txt", "w") do |f|
+    dv_path = File.join(Rails.root, "db", "data", "datavault.txt")
+    File.open(dv_path, "w") do |f|
       keys = stats.first.players_data.first.keys
       f.puts keys.join("\t")
 
@@ -35,8 +36,8 @@ class Stats
         puts "Dumped player stats to #{player_data_path}"
 
       end
-
     end
+    puts "Dumped stats for data vault to: #{dv_path}"
   end
 
   private
@@ -168,6 +169,3 @@ class Stats
 
 end
 
-giants = Stats.new('giants', :team_id => 19)
-jets = Stats.new('jets', :team_id => 20)
-Stats.to_data_vault(giants, jets)
