@@ -46,6 +46,24 @@ class Stats
       end
     end
     puts "Dumped stats for data vault to: #{dv_path}"
+    dv_path
+  end
+
+  def self.dv_config
+    return @dv_config if @dv_config
+    begin
+      @dv_config = YAML.load_file('config/datavault.yml')
+    rescue Exception => e
+      puts "Failed to find datavault urls in 'config/datavault.yml', giving up: #{e.message}"
+      exit 1
+    end
+    @dv_config
+  end
+
+  def self.update_datavault(path)
+    return "No such file '#{path}'" unless File.exists?(path)
+    
+    RestClient.post dv_config['import_url'], :data_string => File.read(path), :publish_url => dv_config['publish_url']
   end
 
   private
@@ -143,7 +161,7 @@ class Stats
       when "RB"
         #* Car (carries)
         #* Fum (fumbles)
-        data['Car'] = current_stats[0].inner_text
+        data['Car'] = box_stats[0].inner_text
         data['Yards'] = box_stats[1].inner_text
         # our pages don't seem to have this info. guh.
         # data['Fum'] = current_stats[8].inner_text
