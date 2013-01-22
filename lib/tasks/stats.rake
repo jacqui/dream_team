@@ -1,15 +1,18 @@
 namespace :stats do
-  desc "scrape nytimes.stats.com for given team stats"
-  task :run => :environment do
-    ids = ENV['TEAMIDS']
-    id1, id2 = ids.split(",").map(&:strip)
+  namespace :nyt do
+    desc "scrape nytimes.stats.com for given team stats"
+    task :teams => :environment do
+      ids_csv = ENV['IDS']
+      ids = ids_csv.split(",").map(&:strip)
 
-    puts "Scraping data for team id#: #{id1}"
-    stat1 = Stats.new('team1', :team_id => id1)
+      stats = ids.map do |id|
+        puts "Scraping data for team id#: #{id}"
+        Stats.new(:team_id => id)
+      end
 
-    puts "Scraping data for team id#: #{id2}"
-    stat2 = Stats.new('team2', :team_id => id2)
-
-    Stats.to_data_vault(stat1, stat2)
+      puts "Generating datavault-friendly tab-delimited version of the stats..."
+      Stats.to_data_vault(stats)
+      puts "Done!"
+    end
   end
 end

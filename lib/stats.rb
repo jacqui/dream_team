@@ -3,12 +3,16 @@ require 'nokogiri'
 require 'yaml'
 class Stats
 
-  attr_accessor :config, :api_key, :base_url, :team_name, :team_id
+  attr_accessor :team_id, :base_url, :data_root, :team_name
 
-  def initialize(team_name, opts = {})
-    @team_name = team_name
+  def initialize(opts = {})
     @team_id = opts[:team_id]
-    @base_url = "http://nytimes.stats.com/fb/"
+    @base_url = opts[:base_url] || "http://nytimes.stats.com/fb/"
+    @data_root = File.join(Rails.root, "db", "data", "nytimes_stats_com")
+  end
+
+  def data_root=(path)
+    @data_root = path
   end
 
   def players_data
@@ -17,14 +21,18 @@ class Stats
   end
 
   def self.to_data_vault(*stats)
-    dv_path = File.join(Rails.root, "db", "data", "datavault.txt")
+    stats.flatten!
+    data_root = stats.first.data_root
+    stats.first.send(:_create_data_root)
+
+    dv_path = File.join(data_root, "data_vault_#{stats.map(&:team_id).join('_v_')}.txt")
     File.open(dv_path, "w") do |f|
       keys = stats.first.players_data.first.keys
       f.puts keys.join("\t")
 
       stats.each do |stat|
 
-        player_data_path = File.join(Rails.root, 'db', 'data', "players_data_#{stat.team_name}.json")
+        player_data_path = File.join(data_root, "players_data_#{stat.team_id}.json")
         stat.players_data.compact.each do |playah|
           row_values = keys.map do |key|
             playah[key].to_s.strip
@@ -43,7 +51,7 @@ class Stats
   private
 
   def get_roster_for_team(opts = {})
-    file_path = File.join(Rails.root, "db", "data", "#{team_name}.html")
+    file_path = File.join(data_root, "roster_#{team_id}.html")
     if File.exists?(file_path)
       open(file_path).read
     elsif team_id
@@ -57,19 +65,28 @@ class Stats
   end
 
   def get_stats_for_player(url)
-    file_path = File.join(Rails.root, "db", "data", "url", "#{url.parameterize}")
+    file_path = File.join(data_root, "url", "#{url.parameterize}")
     if File.exists?(file_path)
       open(file_path).read
     else
       page = open(url).read
-      FileUtils.mkdir_p(File.join(Rails.root, "db", "data", "url"))
+      FileUtils.mkdir_p(File.join(data_root, "url"))
       open(file_path, 'w') { |f| f.write page }
       page
     end
   end
 
+  def _create_data_root
+    # ensure the directory exists before setting this value
+    if !File.exists?(data_root)
+      FileUtils.mkdir_p(data_root)
+    end
+  end
+
   def _parse_roster(opts = {})
     doc = Nokogiri::HTML get_roster_for_team(opts)
+
+    @team_name = doc.at("span.shsTeamName").inner_text
 
     rows = doc.at("table.shsTable.shsBorderTable").search("tr")
 
