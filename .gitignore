@@ -76,3 +76,4 @@ examples
 config/football_nerd.yml
 config/espn.yml
 config/database.yml
+config/datavault.yml
