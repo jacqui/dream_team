@@ -168,7 +168,7 @@ class Stats
       current_stats = current_stats_row.search("td")
       data['G'] = current_stats[2].inner_text
 
-      %w(Pct Int Car Yds FGM FGA Tackles Sacks FF).each{|stat| data[stat] = '' }
+      %w(Stats Pct Int Car Yds FGM FGA Tackles Sacks FF).each{|stat| data[stat] = '' }
 
       case data['position']
 
