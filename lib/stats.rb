@@ -5,6 +5,19 @@ class Stats
 
   attr_accessor :team_id, :base_url, :data_root, :team_name
 
+  MAPPING = { 
+    'QB' => 'Quarterback',
+    'RB' => 'Running Back',
+    'TE' => 'Tight End',
+    'WR' => 'Wide Receiver',
+    'K' => 'Kicker',
+    'CB' => 'Cornerback',
+    'LB' => 'Linebacker',
+    'S' => 'Safety',
+    'DE' => 'Defensive End',
+    'DT' => 'Defensive Tackle'
+  }
+
   def initialize(opts = {})
     @team_id = opts[:team_id]
     @base_url = opts[:base_url] || "http://nytimes.stats.com/fb/"
@@ -35,7 +48,11 @@ class Stats
         player_data_path = File.join(data_root, "players_data_#{stat.team_id}.json")
         stat.players_data.compact.each do |playah|
           row_values = keys.map do |key|
-            playah[key].to_s.strip
+            val = playah[key].to_s.strip
+            if val.blank?
+              val = 'XX'
+            end
+            val
           end
           f.puts row_values.join("\t")
         end
@@ -122,6 +139,9 @@ class Stats
       }
 
       next unless %w(QB RB TE WR K CB LB DE DT S).include?(data['position'])
+
+      data['full_position'] = MAPPING[data['position']]
+
       stats_url = [@base_url, player_cells[1].at('a')['href']].join
       stats_doc = Nokogiri::HTML get_stats_for_player(stats_url)
 
@@ -147,43 +167,51 @@ class Stats
 
       current_stats = current_stats_row.search("td")
       data['G'] = current_stats[2].inner_text
-      data['TDS'] = box_stats[2].inner_text
 
-      %w(PCT Int Car Yards FGM XPM Tackles Sacks FF).each{|stat| data[stat] = '' }
+      %w(Pct Int Car Yds FGM FGA Tackles Sacks FF).each{|stat| data[stat] = '' }
 
       case data['position']
 
       # Offense
       when 'QB'
-        data['PCT'] = current_stats[5].inner_text
+        data['TD'] = box_stats[2].inner_text # passing
+        data['Pct'] = current_stats[5].inner_text
         data['Int'] = current_stats[9].inner_text
+        data['Stats'] = "G,TD,Pct,Int"
 
       when "RB"
         #* Car (carries)
         #* Fum (fumbles)
+        data['TD'] = box_stats[2].inner_text # passing
         data['Car'] = box_stats[0].inner_text
-        data['Yards'] = box_stats[1].inner_text
+        data['Yds'] = box_stats[1].inner_text
+        data['Stats'] = "G,TD,Car,Yds"
         # our pages don't seem to have this info. guh.
         # data['Fum'] = current_stats[8].inner_text
       when "WR"
         #* Rec (receptions)
         #* Fum (fumbles)
+        data['TD'] = box_stats[2].inner_text # passing
         data['Rec'] = box_stats[0].inner_text
-        data['Yards'] = box_stats[1].inner_text
+        data['Yds'] = box_stats[1].inner_text
+        data['Stats'] = "G,TD,Rec,Yds"
         # our pages don't seem to have this info. guh.
         # data['Fum'] = current_stats[8].inner_text
       when "TE"
         #* Rec (receptions)
         #* Fum (fumbles)
+        data['TD'] = box_stats[2].inner_text # passing
         data['Rec'] = box_stats[0].inner_text
-        data['Yards'] = box_stats[1].inner_text
+        data['Yds'] = box_stats[1].inner_text
+        data['Stats'] = "G,TD,Rec,Yds"
         # our pages don't seem to have this info. guh.
         # data['Fum'] = current_stats[8].inner_text
       when "K"
         #* FGM (made)
         #* FGA (attempted)
         data['FGM'] = box_stats[0].inner_text
-        data['XPM'] = box_stats[1].inner_text
+        data['FGA'] = current_stats[4].inner_text
+        data['Stats'] = "G,FGM,FGA"
 
       # Defense
       when /^CB|LB|DE|DT|S$/
@@ -192,7 +220,9 @@ class Stats
         #* ff (forced fumbles) (opt)
         data['Tackles'] = box_stats[0].inner_text
         data['Sacks'] = box_stats[1].inner_text
+        data['Int'] = box_stats[2].inner_text
         data['FF'] = current_stats[11].inner_text
+        data['Stats'] = "G,Tackles,Sacks,Int,FF"
       else
         puts "#{data['name']}: failed finding stats for position '#{data['position']}'"
       end
